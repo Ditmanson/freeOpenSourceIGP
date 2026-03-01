@@ -1,0 +1,3 @@
+<h{{ .Level }} class="{{ if eq .Level 1 }}title is-1{{ else if eq .Level 2 }}title is-2{{ else if eq .Level 3 }}title is-3{{ else if eq .Level 4 }}title is-4{{ else }}title is-5{{ end }}">
+  {{ .Text }}
+</h{{ .Level }}>

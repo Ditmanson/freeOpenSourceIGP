@@ -1,0 +1,20 @@
+.image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* keeps 16:9 crop without distortion */
+  max-width: 800px;  /* optional: limits size on large screens */
+  margin: 0 auto;    /* centers */
+  display: block;
+}
+/* Headers */
+h1, h2, h3, .title {
+    font-family: 'Anton', sans-serif;
+    font-weight: 700;
+}
+
+/* Body text */
+body {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+}

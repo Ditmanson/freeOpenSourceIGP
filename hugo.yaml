@@ -1,0 +1,43 @@
+baseURL: "https://griz.sh"
+title: "FOSS IGP"
+
+menu:
+  main:
+    - identifier: "BH"
+      name: "BH"
+      url: "/bh"
+      weight: 10
+
+    - identifier: "IGP"
+      name: "IGP"
+      url: "/igp"
+      weight: 20
+
+
+    - identifier: "Obedience"
+      name: "Obedience"
+      url: "/obedience"
+      weight: 30
+
+    - identifier: "Nosework"
+      name: "Nosework"
+      url: "/nosework"
+      weight: 40
+
+    - identifier: "Protection"
+      name: "Protection"
+      url: "/protection"
+      weight: 50
+
+    - identifier: "Misc"
+      name: "Misc"
+      url: "/misc"
+      weight: 60
+
+    - identifier: "Tags"
+      name: "Tags"
+      url: "/tags/"
+      weight: 70
+
+#taxonomies:
+#  tag: "tags"
