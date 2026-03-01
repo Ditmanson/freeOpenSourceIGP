@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Home</title>
+    <link>http://localhost:1313/tags/</link>
+    <description>Recent content in Tags on Home</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 27 Feb 2026 14:45:00 -0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Griz</title>
+      <link>http://localhost:1313/tags/griz/</link>
+      <pubDate>Fri, 27 Feb 2026 14:45:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/griz/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Puppy</title>
+      <link>http://localhost:1313/tags/puppy/</link>
+      <pubDate>Fri, 27 Feb 2026 14:45:00 -0700</pubDate>
+      <guid>http://localhost:1313/tags/puppy/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Weapon_training</title>
+      <link>http://localhost:1313/tags/weapon_training/</link>
+      <pubDate>Mon, 23 Feb 2026 17:12:11 -0700</pubDate>
+      <guid>http://localhost:1313/tags/weapon_training/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Argo</title>
+      <link>http://localhost:1313/tags/argo/</link>
+      <pubDate>Sun, 22 Feb 2026 21:49:40 -0700</pubDate>
+      <guid>http://localhost:1313/tags/argo/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Barking</title>
+      <link>http://localhost:1313/tags/barking/</link>
+      <pubDate>Sun, 22 Feb 2026 20:15:36 -0700</pubDate>
+      <guid>http://localhost:1313/tags/barking/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Shaping</title>
+      <link>http://localhost:1313/tags/shaping/</link>
+      <pubDate>Sun, 22 Feb 2026 20:15:36 -0700</pubDate>
+      <guid>http://localhost:1313/tags/shaping/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Detection</title>
+      <link>http://localhost:1313/tags/detection/</link>
+      <pubDate>Sun, 22 Feb 2026 19:53:14 -0700</pubDate>
+      <guid>http://localhost:1313/tags/detection/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,13 @@
+{{ define "main" }}
+  {{ .Content }}
+
+  <h2>Latest Posts</h2>
+<!-- Variable Site wide, grab regular content, reverse sort, top 5 -->
+  <ul>
+    {{ range first 5 .Site.RegularPages.ByDate.Reverse }}
+      <li>
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+      </li>
+    {{ end }}
+  </ul>
+{{ end }}
