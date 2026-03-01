@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Argo on FOSS IGP</title>
-    <link>http://localhost:1313/tags/argo/</link>
+    <link>https://griz.sh/tags/argo/</link>
     <description>Recent content in Argo on FOSS IGP</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Sun, 22 Feb 2026 21:49:40 -0700</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/argo/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://griz.sh/tags/argo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Dan Argo BH1</title>
-      <link>http://localhost:1313/bh/dan_argo_bh1/</link>
+      <link>https://griz.sh/bh/dan_argo_bh1/</link>
       <pubDate>Sun, 22 Feb 2026 21:49:40 -0700</pubDate>
-      <guid>http://localhost:1313/bh/dan_argo_bh1/</guid>
+      <guid>https://griz.sh/bh/dan_argo_bh1/</guid>
       <description>&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;&#xA;      &lt;iframe allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen&#34; loading=&#34;eager&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; src=&#34;https://www.youtube.com/embed/6-U-XJTMxXU?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; title=&#34;YouTube video&#34;&gt;&lt;/iframe&gt;&#xA;    &lt;/div&gt;&#xA;&#xA;&lt;p&gt;&lt;em&gt;reply at the bottom&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;Dan is a new friend of mine we met through our breeder. Argo is actually Griz&amp;rsquo;s big brother from the litter before. He&amp;rsquo;s sitting at 11 months compared to Griz&amp;rsquo;s 4 months. I&amp;rsquo;m super excited to have someone else to work with. Argo is got a gnarly bite on him. His baseline seems to be to clamp and pull. And the &lt;strong&gt;POWER!!&lt;/strong&gt; . Man he&amp;rsquo;s strong.&lt;/p&gt;</description>
     </item>
   </channel>

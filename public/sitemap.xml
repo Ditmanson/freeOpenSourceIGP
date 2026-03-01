@@ -2,87 +2,85 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/bh/</loc>
+    <loc>https://griz.sh/bh/</loc>
+    <lastmod>2026-02-28T21:59:30-07:00</lastmod>
+  </url><url>
+    <loc>https://griz.sh/</loc>
+    <lastmod>2026-02-28T21:59:30-07:00</lastmod>
+  </url><url>
+    <loc>https://griz.sh/bh/griz-bh1-4months/</loc>
     <lastmod>2026-02-27T18:10:53-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
-    <lastmod>2026-02-27T18:10:53-07:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/bh/griz-bh1-4months/</loc>
-    <lastmod>2026-02-27T18:10:53-07:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/obedience/fetch_obedience/</loc>
+    <loc>https://griz.sh/obedience/fetch_obedience/</loc>
     <lastmod>2026-02-27T14:45:00-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/griz/</loc>
+    <loc>https://griz.sh/tags/griz/</loc>
     <lastmod>2026-02-27T14:45:00-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/obedience/</loc>
+    <loc>https://griz.sh/obedience/</loc>
     <lastmod>2026-02-27T14:45:00-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/puppy/</loc>
+    <loc>https://griz.sh/tags/puppy/</loc>
     <lastmod>2026-02-27T14:45:00-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://griz.sh/tags/</loc>
     <lastmod>2026-02-27T14:45:00-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/protection/</loc>
+    <loc>https://griz.sh/protection/</loc>
     <lastmod>2026-02-23T17:12:11-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/weapon_training/</loc>
+    <loc>https://griz.sh/tags/weapon_training/</loc>
     <lastmod>2026-02-23T17:12:11-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/protection/weapon_training_first_thoughts/</loc>
+    <loc>https://griz.sh/protection/weapon_training_first_thoughts/</loc>
     <lastmod>2026-02-23T17:12:11-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/misc/diet/</loc>
+    <loc>https://griz.sh/misc/diet/</loc>
     <lastmod>2026-02-22T22:24:23-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/misc/</loc>
+    <loc>https://griz.sh/misc/</loc>
     <lastmod>2026-02-22T22:24:23-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/nosework/</loc>
+    <loc>https://griz.sh/nosework/</loc>
     <lastmod>2026-02-22T22:23:01-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/nosework/tracking_17weeks/</loc>
+    <loc>https://griz.sh/nosework/tracking_17weeks/</loc>
     <lastmod>2026-02-22T22:23:01-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/obedience/hurddle_1/</loc>
+    <loc>https://griz.sh/obedience/hurddle_1/</loc>
     <lastmod>2026-02-22T22:20:15-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/argo/</loc>
+    <loc>https://griz.sh/tags/argo/</loc>
     <lastmod>2026-02-22T21:49:40-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/bh/dan_argo_bh1/</loc>
+    <loc>https://griz.sh/bh/dan_argo_bh1/</loc>
     <lastmod>2026-02-22T21:49:40-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/igp/igp_rules/</loc>
+    <loc>https://griz.sh/igp/igp_rules/</loc>
     <lastmod>2026-02-22T21:47:39-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/igp/</loc>
+    <loc>https://griz.sh/igp/</loc>
     <lastmod>2026-02-22T21:47:39-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/protection/bark_training_1/</loc>
+    <loc>https://griz.sh/protection/bark_training_1/</loc>
     <lastmod>2026-02-22T20:15:36-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/barking/</loc>
+    <loc>https://griz.sh/tags/barking/</loc>
     <lastmod>2026-02-22T20:15:36-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/shaping/</loc>
+    <loc>https://griz.sh/tags/shaping/</loc>
     <lastmod>2026-02-22T20:15:36-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/protection/bark_training_2/</loc>
+    <loc>https://griz.sh/protection/bark_training_2/</loc>
     <lastmod>2026-02-22T20:13:22-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/detection/</loc>
+    <loc>https://griz.sh/tags/detection/</loc>
     <lastmod>2026-02-22T19:53:14-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/nosework/detection1/</loc>
+    <loc>https://griz.sh/nosework/detection1/</loc>
     <lastmod>2026-02-22T19:53:14-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/misc/small_challegnes/</loc>
+    <loc>https://griz.sh/misc/small_challegnes/</loc>
     <lastmod>2026-02-22T19:42:42-07:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/categories/</loc>
   </url>
 </urlset>

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>IGPs on FOSS IGP</title>
-    <link>http://localhost:1313/igp/</link>
+    <link>https://griz.sh/igp/</link>
     <description>Recent content in IGPs on FOSS IGP</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Sun, 22 Feb 2026 21:47:39 -0700</lastBuildDate>
-    <atom:link href="http://localhost:1313/igp/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://griz.sh/igp/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>IGP RULES</title>
-      <link>http://localhost:1313/igp/igp_rules/</link>
+      <link>https://griz.sh/igp/igp_rules/</link>
       <pubDate>Sun, 22 Feb 2026 21:47:39 -0700</pubDate>
-      <guid>http://localhost:1313/igp/igp_rules/</guid>
+      <guid>https://griz.sh/igp/igp_rules/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://www.germanshepherddog.com/wp-content/uploads/2025/07/USCA-IGP-Rulebook-4.0-eff-1.2025.-final-1.pdf&#34;&gt;ruleset&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h1 class=&#34;title is-1&#34;&gt;&#xA;  Basic Requirements for dog behavior&#xA;&lt;/h1&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Confidence&lt;/li&gt;&#xA;&lt;li&gt;Free, happy, motivated to work&lt;/li&gt;&#xA;&lt;li&gt;Attentive to the handler&lt;/li&gt;&#xA;&lt;li&gt;Harmony of the team &lt;em&gt;whatever that means&lt;/em&gt;&lt;/li&gt;&#xA;&lt;li&gt;Correctness&lt;/li&gt;&#xA;&lt;li&gt;Acceptance of commands&lt;/li&gt;&#xA;&lt;li&gt;Basic assesment of execution of trial exercises&lt;/li&gt;&#xA;&lt;li&gt;Response to verbal&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h1 class=&#34;title is-1&#34;&gt;&#xA;  Verbal corrections&#xA;&lt;/h1&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;1 additional command is 1.5 deduction&lt;/li&gt;&#xA;&lt;li&gt;2nd additional commands are each 2.5 point &amp;mdash;&amp;mdash;&amp;mdash;-&lt;/li&gt;&#xA;&lt;li&gt;3rd additional command is a dq for the round&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h1 class=&#34;title is-1&#34;&gt;&#xA;  Praise&#xA;&lt;/h1&gt;&#xA;&lt;p&gt;May be praised after each exercise, must be back in position within 5 seconds&lt;/p&gt;</description>
     </item>
   </channel>

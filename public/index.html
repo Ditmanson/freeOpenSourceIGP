@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
-	<meta name="generator" content="Hugo 0.154.2"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+	<meta name="generator" content="Hugo 0.154.2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
 <title>
   
@@ -36,7 +38,7 @@
     <a role="button"
        class="navbar-burger"
        aria-label="menu"
-       aria-expanded="false"
+       aria-expanded="true"
        data-target="mainNavbar">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
@@ -78,58 +80,100 @@
     </div>
   </div>
 </nav>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+    
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    
+    $navbarBurgers.forEach(el => {
+      el.addEventListener('click', () => {
+
+        
+        const target = el.dataset.target;
+        const $target = document.getElementById(target);
+
+        
+        el.classList.toggle('is-active');
+        $target.classList.toggle('is-active');
+
+      });
+    });
+
+  });
+</script>
+
 
     </header>
 
     <main>
       
-<section class="section">
-  <div class="block">
-    <h2 class="title is-2">
-  Free Open Source IGP
-</h2>
-<p>Training our dog to be something between a sport dog, a pet dog, and a asset in home protection.</p>
-<p><figure class="image is-16by9" >
-  <img src="/griz_and_i.png" alt="index">
-</figure>
+<h1 class="title">
+  Free Open Source IGP 
+</h1>
+
+<div class="fixed-grid">
+  <div class="grid">
+    <div class="cell">
+      <div class="section">
+        <h2>Latest Posts</h2>
+        <ul>
+          
+          <div class="box">
+
+            <a class="button" href="/bh/griz-bh1-4months/">27 Feb 27276 : Griz BH1 4 months</a>
+          </div>
+          
+          <div class="box">
+
+            <a class="button" href="/obedience/fetch_obedience/">27 Feb 27276 : Fetch Obedience</a>
+          </div>
+          
+          <div class="box">
+
+            <a class="button" href="/protection/weapon_training_first_thoughts/">23 Feb 23236 : Weapon_training_first_thoughts</a>
+          </div>
+          
+          <div class="box">
+
+            <a class="button" href="/misc/diet/">22 Feb 22226 : Diet</a>
+          </div>
+          
+          <div class="box">
+
+            <a class="button" href="/nosework/tracking_17weeks/">22 Feb 22226 : Tracking 17weeks</a>
+          </div>
+          
+        </ul>
+      </div>
+
+    </div>
+    <div class="cell">
+      <section class="section">
+        <div class="block">
+          <p><div class="block">
+  <figure class="image is-16by9 mt-2 mb-2" >
+    <img src="/griz_and_i.png" alt="index">
+  </figure>
+</div>
 </p>
+<p>Training our dog to be something between a sport dog, a pet dog, and a asset in home protection.</p>
 
+        </div>
+
+      </section>
+
+    </div>
   </div>
-
-</section>
-  
-  
-
-  <h2>Latest Posts</h2>
-
-  <ul>
-    
-      <li>
-        <a href="/bh/griz-bh1-4months/">Griz BH1 4 months</a>
-      </li>
-    
-      <li>
-        <a href="/obedience/fetch_obedience/">Fetch Obedience</a>
-      </li>
-    
-      <li>
-        <a href="/protection/weapon_training_first_thoughts/">Weapon_training_first_thoughts</a>
-      </li>
-    
-      <li>
-        <a href="/misc/diet/">Diet</a>
-      </li>
-    
-      <li>
-        <a href="/nosework/tracking_17weeks/">Tracking 17weeks</a>
-      </li>
-    
-  </ul>
+</div>
 
     </main>
 
     <footer>
-      <p>Free Open Source IPG 2026.</p>
+      <div class="section">
+<p>Free Open Source IPG 2026.</p>
+</div>
 
     </footer>
   </body>

@@ -39,5 +39,5 @@ menu:
       url: "/tags/"
       weight: 70
 
-#taxonomies:
-#  tag: "tags"
+taxonomies:
+  tag: "tags"

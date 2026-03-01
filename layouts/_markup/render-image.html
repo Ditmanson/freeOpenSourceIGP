@@ -1,4 +1,6 @@
-<figure class="image {{ .Title }}" >
-  <img src="{{ .Destination | safeURL }}"
-       {{- with .PlainText }} alt="{{ . }}"{{ end }}>
-</figure>
+<div class="block">
+  <figure class="image {{ .Title }} mt-2 mb-2" >
+    <img src="{{ .Destination | safeURL }}"
+      {{- with .PlainText }} alt="{{ . }}"{{ end }}>
+  </figure>
+</div>
