@@ -1,0 +1,81 @@
+<h1>{{ .Title }}</h1>
+
+<h2>Comments</h2>
+
+<!-- Displaying the loaded comments -->
+<div id="commentsList" style="display:none;">
+    <div id="comments" class="box"></div>
+</div>
+
+<!-- Message when no comments are loaded -->
+<div id="noCommentsMessage">Loading comments...</div>
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM fully loaded, fetching comments...');
+    loadComments();
+});
+
+function loadComments() {
+    console.log('Loading comments...');
+
+    fetch('https://api.griz.sh/comments/?format=json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Fetched comments:', data);
+
+            const commentsList = document.getElementById('commentsList');
+            const commentsContainer = document.getElementById('comments');
+            const noCommentsMessage = document.getElementById('noCommentsMessage');
+
+            if (!commentsList || !commentsContainer) {
+                console.error('Required elements not found');
+                return;
+            }
+
+            commentsContainer.innerHTML = '';
+
+            // Normalize URL (remove hash)
+            const currentUrl = window.location.href.split('#')[0];
+
+            // Filter comments for this page
+            const filteredComments = data.filter(comment => {
+                if (!comment.url) return false;
+                return comment.url.split('#')[0] === currentUrl;
+            });
+
+            if (filteredComments.length === 0) {
+                noCommentsMessage.innerText = "No comments for this page.";
+                noCommentsMessage.style.display = "block";
+                commentsList.style.display = "none";
+                return;
+            }
+
+            noCommentsMessage.style.display = "none";
+            commentsList.style.display = "block";
+
+            filteredComments.forEach(comment => {
+                const commentDiv = document.createElement('div');
+                commentDiv.classList.add('box');
+
+                commentDiv.innerHTML = `
+                    <strong>${comment.name}</strong>: ${comment.comment}
+                `;
+
+                commentsContainer.appendChild(commentDiv);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching comments:', error);
+            const noCommentsMessage = document.getElementById('noCommentsMessage');
+            if (noCommentsMessage) {
+                noCommentsMessage.innerText = "Error loading comments.";
+            }
+        });
+}
+</script>

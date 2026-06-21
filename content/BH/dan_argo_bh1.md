@@ -1,8 +1,8 @@
 ---
-title: "Dan Argo BH1"
+title: "Dan Argos BH1"
 date: 2026-02-22T21:49:40-07:00
 tags:
-  - Argo
+  - Argos
 ---
 
 {{< youtube 6-U-XJTMxXU >}}
@@ -10,7 +10,7 @@ tags:
 _reply at the bottom_
 
 
-Dan is a new friend of mine we met through our breeder. Argo is actually Griz's big brother from the litter before. He's sitting at 11 months compared to Griz's 4 months. I'm super excited to have someone else to work with. Argo is got a gnarly bite on him. His baseline seems to be to clamp and pull. And the **POWER!!** . Man he's strong. 
+Dan is a new friend of mine we met through our breeder. Argos is actually Griz's big brother from the litter before. He's sitting at 11 months compared to Griz's 4 months. I'm super excited to have someone else to work with. Argos is got a gnarly bite on him. His baseline seems to be to clamp and pull. And the **POWER!!** . Man he's strong. 
 
 This is our second time meeting each other, first time was on a walk at Palmers, which is not structured like this. We'll see his first attempt at running through some BH drills. He has the leash hanging as he moves through the shape of the BH. after the second right turn he deviates to drilling the sit/stay and down/stays. 
 

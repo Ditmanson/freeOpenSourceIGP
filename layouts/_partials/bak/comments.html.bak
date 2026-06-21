@@ -1,0 +1,64 @@
+<h1>{{ .Title }}</h1>
+<h2>Comments</h2>
+
+<!-- Displaying the loaded comments -->
+<div id="commentsList" style="display:none;">
+    <!-- <ul id="comments"></ul> -->
+  <div id="comments" class="box"> </div>
+</div>
+
+<!-- Message when no comments are loaded -->
+<div id="noCommentsMessage">Click the button to load comments.</div>
+
+<script>
+    // Wait until the DOM content is fully loaded
+    window.addEventListener('DOMContentLoaded', () => {
+        console.log('DOM fully loaded, fetching comments...');
+        loadComments();  // Call the function to load comments
+    });
+
+    function loadComments() {
+        console.log('Loading comments...'); // Debugging: Check if this is logged
+
+        // fetch('http://api.griz.sh/comments/?format=json')  // Ensure correct endpoint
+        fetch('https://api.griz.sh/comments/?format=json')  // Ensure correct endpoint
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Fetched comments:', data); // Debugging: Check the response data
+
+                // Check if the commentsList element exists
+                const commentsList = document.getElementById('commentsList');
+                if (!commentsList) {
+                    console.error('Element with id "commentsList" not found');
+                    return;
+                }
+
+                // Hide no-comments message and display the list
+                const noCommentsMessage = document.getElementById('noCommentsMessage');
+                if (noCommentsMessage) {
+                    noCommentsMessage.style.display = 'none';
+                }
+
+                commentsList.style.display = 'block'; // Make the comment list visible
+
+                // Clear previous comments and populate with new ones
+                const commentsUl = document.getElementById('comments');
+                commentsUl.innerHTML = ''; // Clear previous list
+                data.forEach(comment => {
+                    const li = document.createElement('div');
+                    // const li = document.createElement('li');
+                    li.classList.add('box')
+                    li.innerHTML = `<strong>${comment.name}</strong>: ${comment.comment} (<a href="">${comment.url}</a>)`;
+                    commentsUl.appendChild(li);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching comments:', error);
+            });
+    }
+</script>

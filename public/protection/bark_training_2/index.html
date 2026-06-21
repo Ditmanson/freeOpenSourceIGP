@@ -72,6 +72,10 @@
           Misc
         </a>
       
+        <a href="/schedule" class="navbar-item">
+          Schedule
+        </a>
+      
         <a href="/tags/" class="navbar-item">
           Tags
         </a>
@@ -108,6 +112,7 @@
 
     <main>
       
+
 <article class="section">
   <div class="block">
     <h1>Bark training 2</h1>
@@ -120,6 +125,165 @@
 
   </div>
 </article>
+
+<h1>Bark training 2</h1>
+
+<h2>Comments</h2>
+
+
+<div id="commentsList" style="display:none;">
+    <div id="comments" class="box"></div>
+</div>
+
+
+<div id="noCommentsMessage">Loading comments...</div>
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM fully loaded, fetching comments...');
+    loadComments();
+});
+
+function loadComments() {
+    console.log('Loading comments...');
+
+    fetch('https://api.griz.sh/comments/?format=json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Fetched comments:', data);
+
+            const commentsList = document.getElementById('commentsList');
+            const commentsContainer = document.getElementById('comments');
+            const noCommentsMessage = document.getElementById('noCommentsMessage');
+
+            if (!commentsList || !commentsContainer) {
+                console.error('Required elements not found');
+                return;
+            }
+
+            commentsContainer.innerHTML = '';
+
+            
+            const currentUrl = window.location.href.split('#')[0];
+
+            
+            const filteredComments = data.filter(comment => {
+                if (!comment.url) return false;
+                return comment.url.split('#')[0] === currentUrl;
+            });
+
+            if (filteredComments.length === 0) {
+                noCommentsMessage.innerText = "No comments for this page.";
+                noCommentsMessage.style.display = "block";
+                commentsList.style.display = "none";
+                return;
+            }
+
+            noCommentsMessage.style.display = "none";
+            commentsList.style.display = "block";
+
+            filteredComments.forEach(comment => {
+                const commentDiv = document.createElement('div');
+                commentDiv.classList.add('box');
+
+                commentDiv.innerHTML = `
+                    <strong>${comment.name}</strong>: ${comment.comment}
+                `;
+
+                commentsContainer.appendChild(commentDiv);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching comments:', error);
+            const noCommentsMessage = document.getElementById('noCommentsMessage');
+            if (noCommentsMessage) {
+                noCommentsMessage.innerText = "Error loading comments.";
+            }
+        });
+}
+</script>
+
+
+<div class="box">
+    <h3 class="title is-4">Post a Comment</h3>
+    <form id="commentForm">
+        <div class="field">
+            <label class="label">Name</label>
+            <div class="control">
+                <input class="input" type="text" id="name" placeholder="Your Name" required />
+            </div>
+        </div>
+        
+        <div class="field">
+            <label class="label">Comment</label>
+            <div class="control">
+                <textarea class="textarea" id="comment" placeholder="Your comment..." required></textarea>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <button type="submit" class="button is-link">Post Comment</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    
+    document.addEventListener('DOMContentLoaded', function () {
+        const commentForm = document.getElementById('commentForm');
+
+        commentForm.addEventListener('submit', function (event) {
+            event.preventDefault(); 
+
+            
+            const name = document.getElementById('name').value;
+            const comment = document.getElementById('comment').value;
+
+            
+            const currentUrl = window.location.href;
+
+            
+            const commentData = {
+                name: name,
+                comment: comment,
+                url: currentUrl, 
+            };
+
+            
+            
+            fetch('https://api.griz.sh/comments/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(commentData),
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Posted comment:', data);
+                    
+                    loadComments();
+                })
+                .catch(error => {
+                    console.error('Error posting comment:', error);
+                });
+        });
+    });
+</script>
+
+
 
     </main>
 

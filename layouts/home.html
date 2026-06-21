@@ -12,7 +12,8 @@
           {{ range first 5 .Site.RegularPages.ByDate.Reverse }}
           <div class="box">
 
-            <a class="button" href="{{ .RelPermalink }}">{{.Date.Format "02 Jan 2026" }} : {{ .Title }}</a>
+            <a class="button" href="{{ .RelPermalink }}">'{{ dateFormat "2006-01-02" .Date }}:{{ .Title }}'
+</a>
           </div>
           {{ end }}
         </ul>

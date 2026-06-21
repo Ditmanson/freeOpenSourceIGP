@@ -1,0 +1,60 @@
+<h2>Post a Comment</h2>
+
+<form id="commentForm" action="javascript:void(0);">
+    <label for="name">Name:</label>
+    <input class= "input is-info" type="text" id="name" name="name" required>
+
+    <label for="comment">Comment:</label>
+    <textarea class="textarea is-info" id="comment" name="comment" required></textarea>
+
+    <button class="button" type="submit">Post Comment</button>
+</form>
+
+<script>
+    document.getElementById('commentForm').addEventListener('submit', function (event) {
+        event.preventDefault();  // Prevent the default form submission
+
+        const name = document.getElementById('name').value;
+        const comment = document.getElementById('comment').value;
+
+        // Check if name and comment are provided
+        if (name && comment) {
+            // Create a comment object
+            const newComment = {
+                name: name,
+                comment: comment,
+                url: "http://api.griz.sh/comments"  // Assuming this is the URL you want to link to
+            };
+
+            // Send the POST request
+            fetch('http://api.griz.sh/comments/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newComment)  // Send the new comment as a JSON body
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to post comment');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Comment posted:', data);  // For debugging, check the posted comment
+                alert('Your comment has been posted!');
+                // Optionally, you could refresh the comments list here
+                loadComments();
+                // Clear the form inputs after submission
+                document.getElementById('name').value = '';
+                document.getElementById('comment').value = '';
+            })
+            .catch(error => {
+                console.error('Error posting comment:', error);
+                alert('There was an error posting your comment.');
+            });
+        } else {
+            alert('Both Name and Comment are required!');
+        }
+    });
+</script>

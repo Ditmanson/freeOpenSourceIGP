@@ -1,0 +1,74 @@
+<!-- Post Comment Form -->
+<div class="box">
+    <h3 class="title is-4">Post a Comment</h3>
+    <form id="commentForm">
+        <div class="field">
+            <label class="label">Name</label>
+            <div class="control">
+                <input class="input" type="text" id="name" placeholder="Your Name" required />
+            </div>
+        </div>
+        
+        <div class="field">
+            <label class="label">Comment</label>
+            <div class="control">
+                <textarea class="textarea" id="comment" placeholder="Your comment..." required></textarea>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <button type="submit" class="button is-link">Post Comment</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    // Wait until the DOM content is fully loaded
+    document.addEventListener('DOMContentLoaded', function () {
+        const commentForm = document.getElementById('commentForm');
+
+        commentForm.addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent form from submitting the traditional way
+
+            // Collect form data
+            const name = document.getElementById('name').value;
+            const comment = document.getElementById('comment').value;
+
+            // Get the current page URL (this will be the URL of the page the user is on)
+            const currentUrl = window.location.href;
+
+            // Prepare the comment data
+            const commentData = {
+                name: name,
+                comment: comment,
+                url: currentUrl, // Add the current page URL
+            };
+
+            // Post the comment data
+            // fetch('http://api-service.griz.svc.cluster.local/comments/', {  // Ensure correct endpoint
+            fetch('https://api.griz.sh/comments/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(commentData),
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Posted comment:', data);
+                    // Optionally, you could trigger a reload of the comments after posting
+                    loadComments();
+                })
+                .catch(error => {
+                    console.error('Error posting comment:', error);
+                });
+        });
+    });
+</script>

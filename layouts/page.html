@@ -1,8 +1,13 @@
 {{ define "main" }}
+
 <article class="section">
   <div class="block">
     <h1>{{ .Title }}</h1>
     {{ .Content }}
   </div>
 </article>
+
+{{ partial "/comments.html" . }}
+{{ partial "/postComment.html" . }}
+
 {{ end }}

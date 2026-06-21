@@ -1,0 +1,18 @@
+<h1>{{ .Title }}</h1>
+
+<h2>Comments</h2>
+
+<div
+  id="comments"
+  class="box"
+  hx-get="https://api.griz.sh/comments/?format=json"
+  hx-trigger="load"
+  hx-target="#comments"
+  hx-swap="innerHTML"
+  hx-headers='{
+    "Accept": "application/json",
+    "X-Requested-With": "XMLHttpRequest"
+  }'
+>
+Loading comments...
+</div>

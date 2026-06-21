@@ -34,6 +34,12 @@ menu:
       url: "/misc"
       weight: 60
 
+    - identifier: "Schedule"
+      name: "Schedule"
+      url: "/schedule"
+      weight: 61
+
+
     - identifier: "Tags"
       name: "Tags"
       url: "/tags/"
