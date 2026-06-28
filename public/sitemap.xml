@@ -2,10 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://griz.sh/obedience/8-month-check-in-griz/</loc>
-    <lastmod>2026-06-21T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://griz.sh/</loc>
+    <lastmod>2026-06-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://griz.sh/protection/griz-8-month-bite-drive/</loc>
+    <lastmod>2026-06-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://griz.sh/protection/</loc>
+    <lastmod>2026-06-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://griz.sh/obedience/8-month-check-in-griz/</loc>
     <lastmod>2026-06-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://griz.sh/obedience/</loc>
@@ -45,9 +51,6 @@
     <lastmod>2026-03-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://griz.sh/nosework/</loc>
-    <lastmod>2026-03-15T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://griz.sh/protection/</loc>
     <lastmod>2026-03-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://griz.sh/obedience/sendaway-begginer/</loc>
