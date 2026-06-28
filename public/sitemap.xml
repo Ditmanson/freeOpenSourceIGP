@@ -2,8 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://griz.sh/nosework/20260628-griz-8-months-tracking/</loc>
+    <lastmod>2026-06-28T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://griz.sh/</loc>
-    <lastmod>2026-06-27T00:00:00+00:00</lastmod>
+    <lastmod>2026-06-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://griz.sh/nosework/</loc>
+    <lastmod>2026-06-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://griz.sh/protection/griz-8-month-bite-drive/</loc>
     <lastmod>2026-06-27T00:00:00+00:00</lastmod>
@@ -48,9 +54,6 @@
     <lastmod>2026-03-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://griz.sh/tags/karma/</loc>
-    <lastmod>2026-03-15T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://griz.sh/nosework/</loc>
     <lastmod>2026-03-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://griz.sh/obedience/sendaway-begginer/</loc>
