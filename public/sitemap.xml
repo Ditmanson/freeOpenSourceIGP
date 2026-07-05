@@ -2,10 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://griz.sh/nosework/20260628-griz-8-months-tracking/</loc>
-    <lastmod>2026-06-28T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://griz.sh/</loc>
+    <lastmod>2026-07-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://griz.sh/misc/k3s-setup/</loc>
+    <lastmod>2026-07-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://griz.sh/misc/</loc>
+    <lastmod>2026-07-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://griz.sh/nosework/20260628-griz-8-months-tracking/</loc>
     <lastmod>2026-06-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://griz.sh/nosework/</loc>
@@ -63,9 +69,6 @@
     <lastmod>2026-03-14T07:21:22-06:00</lastmod>
   </url><url>
     <loc>https://griz.sh/tags/chill/</loc>
-    <lastmod>2026-03-14T07:21:22-06:00</lastmod>
-  </url><url>
-    <loc>https://griz.sh/misc/</loc>
     <lastmod>2026-03-14T07:21:22-06:00</lastmod>
   </url><url>
     <loc>https://griz.sh/tags/petdogskills/</loc>
