@@ -6,3 +6,13 @@
     {{ .Title }} | {{ .Site.Title }}
   {{ end }}
 </title>
+
+{{ if eq .Kind "page" }}
+<!-- htmx + client-side-templates (renders JSON API responses via Mustache) + Alpine (UI state).
+     Only loaded on individual post pages (layouts/page.html), the only template that renders
+     comments.html/postComment.html - section/home/tag pages don't need these. -->
+<script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.10/dist/htmx.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/mustache@4.2.0/mustache.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/htmx-ext-client-side-templates@2.0.2/client-side-templates.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.16.3/dist/cdn.min.js" defer></script>
+{{ end }}
