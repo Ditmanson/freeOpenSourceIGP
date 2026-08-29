@@ -230,6 +230,7 @@ function escapeHtml(str) {
 </script>
 
 
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <div class="box">
     <h3 class="title is-4">Post a Comment</h3>
     <form id="commentForm">
@@ -239,13 +240,19 @@ function escapeHtml(str) {
                 <input class="input" type="text" id="name" placeholder="Your Name" required />
             </div>
         </div>
-        
+
         <div class="field">
             <label class="label">Comment</label>
             <div class="control">
                 <textarea class="textarea" id="comment" placeholder="Your comment..." required></textarea>
             </div>
         </div>
+
+        <div class="field">
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAAEhVn_r1wv8HHNku"></div>
+        </div>
+
+        <p id="commentError" class="has-text-danger" style="display:none;"></p>
 
         <div class="field">
             <div class="control">
@@ -257,12 +264,35 @@ function escapeHtml(str) {
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     const commentForm = document.getElementById('commentForm');
+    const commentError = document.getElementById('commentError');
 
     const GRAPHQL_ENDPOINT = "https://z2ujenfjtzhdngdxb7xe5pld3i.appsync-api.us-east-2.amazonaws.com/graphql";
     const API_KEY = "da2-zmx7kmlw7ze4hioupggncn3xtm";
 
+    function showError(message) {
+        commentError.textContent = message;
+        commentError.style.display = "block";
+    }
+
+    function hideError() {
+        commentError.style.display = "none";
+    }
+
+    function resetTurnstile() {
+        if (typeof turnstile !== "undefined") {
+            turnstile.reset();
+        }
+    }
+
     commentForm.addEventListener('submit', async function (event) {
         event.preventDefault();
+        hideError();
+
+        const turnstileToken = typeof turnstile !== "undefined" ? turnstile.getResponse() : "";
+        if (!turnstileToken) {
+            showError("Please complete the captcha before posting.");
+            return;
+        }
 
         const name = document.getElementById('name').value;
         const comment = document.getElementById('comment').value;
@@ -300,7 +330,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "x-api-key": API_KEY
+                    "x-api-key": API_KEY,
+                    "x-turnstile-token": turnstileToken
                 },
                 body: JSON.stringify({
                     query: mutation,
@@ -312,13 +343,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (result.errors) {
                 console.error("GraphQL errors:", result.errors);
-                throw new Error("Failed to post comment");
+                
+                
+                
+                const isCaptchaError = result.errors.some(e => (e.message || "").includes("Turnstile"));
+                showError(isCaptchaError
+                    ? "Captcha verification failed. Please try again."
+                    : "Something went wrong posting your comment. Please try again.");
+                resetTurnstile();
+                return;
             }
 
             console.log("Posted comment:", result.data);
 
             
             commentForm.reset();
+            resetTurnstile();
 
             
             if (typeof loadComments === "function") {
@@ -327,6 +367,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         } catch (error) {
             console.error("Error posting comment:", error);
+            showError("Something went wrong posting your comment. Please try again.");
+            resetTurnstile();
         }
     });
 });
