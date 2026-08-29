@@ -2,7 +2,11 @@
 
 New comments land in the `grizcomments` DynamoDB table (region `us-east-2`) with `approved: false` by default — this is enforced server-side by the `createGrizcomments` AppSync resolver, not by the client, so it can't be bypassed by posting directly against the public API. The site's display query only shows comments where `approved: true`.
 
-There's no approval UI. Requires the AWS CLI configured with credentials that have `dynamodb:Scan`/`dynamodb:UpdateItem` on the `grizcomments` table. To approve a specific comment:
+There's no approval UI. Requires the AWS CLI configured with credentials that have `dynamodb:Scan`/`dynamodb:UpdateItem` on the `grizcomments` table.
+
+For approving several comments at once, see `scripts/README.md` — `list-unapproved-comments.py` dumps all pending comments to a YAML file to review, `approve-comments.py` pushes back whichever you flip to `approved: true`.
+
+To approve a single specific comment by hand instead:
 
 1. Find the pending comment (optionally filter by post):
 
