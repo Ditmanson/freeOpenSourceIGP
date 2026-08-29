@@ -10,6 +10,15 @@
   
 </title>
 
+
+
+<script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.10/dist/htmx.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/mustache@4.2.0/mustache.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/htmx-ext-client-side-templates@2.0.2/client-side-templates.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/htmx-ext-json-enc@2.0.3/json-enc.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.16.3/dist/cdn.min.js" defer></script>
+
+
   </head>
   <link
     rel="stylesheet"
@@ -123,115 +132,30 @@
 <h2>Comments</h2>
 
 
-<div id="commentsList" style="display:none;">
-    <div id="comments" class="box"></div>
+<template id="comments-template">
+{{#data.listGrizcomments.items}}
+<div class="box">
+    <strong>{{name}}</strong><br>
+    <p>{{comment}}</p>
 </div>
+{{/data.listGrizcomments.items}}
+{{^data.listGrizcomments.items}}
+<p>No comments yet.</p>
+{{/data.listGrizcomments.items}}
+</template>
 
-
-<div id="noCommentsMessage">Loading comments...</div>
-<script>
-window.addEventListener('DOMContentLoaded', () => {
-    loadComments();
-});
-
-const GRAPHQL_ENDPOINT = "https://z2ujenfjtzhdngdxb7xe5pld3i.appsync-api.us-east-2.amazonaws.com/graphql";
-const API_KEY = "da2-zmx7kmlw7ze4hioupggncn3xtm";
-
-async function loadComments() {
-    const commentsContainer = document.getElementById('comments');
-    const commentsList = document.getElementById('commentsList');
-    const noCommentsMessage = document.getElementById('noCommentsMessage');
-
-    const postSlug = window.location.pathname;
-
-    const query = `
-        query ListComments($filter: TableGrizcommentsFilterInput) {
-            listGrizcomments(filter: $filter) {
-                items {
-                    id
-                    name
-                    comment
-                    postSlug
-                    createdAt
-                    approved
-                }
-            }
-        }
-    `;
-
-    const variables = {
-        filter: {
-            postSlug: {
-                eq: postSlug
-            },
-            approved: {
-                eq: true
-            }
-        }
-    };
-
-    try {
-        const response = await fetch(GRAPHQL_ENDPOINT, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "x-api-key": API_KEY
-            },
-            body: JSON.stringify({
-                query,
-                variables
-            })
-        });
-
-        const result = await response.json();
-
-        if (result.errors) {
-            console.error(result.errors);
-            throw new Error("GraphQL error");
-        }
-
-        const items = result.data.listGrizcomments.items || [];
-
-        commentsContainer.innerHTML = '';
-
-        if (items.length === 0) {
-            noCommentsMessage.innerText = "No comments yet.";
-            noCommentsMessage.style.display = "block";
-            commentsList.style.display = "none";
-            return;
-        }
-
-        noCommentsMessage.style.display = "none";
-        commentsList.style.display = "block";
-
-        items.forEach(comment => {
-            const div = document.createElement('div');
-            div.className = 'box';
-
-            div.innerHTML = `
-                <strong>${escapeHtml(comment.name)}</strong><br>
-                <p>${escapeHtml(comment.comment)}</p>
-            `;
-
-            commentsContainer.appendChild(div);
-        });
-
-    } catch (err) {
-        console.error('Error loading comments:', err);
-        noCommentsMessage.innerText = "Error loading comments.";
-    }
-}
-
-
-function escapeHtml(str) {
-    return String(str)
-        .replaceAll('&', '&amp;')
-        .replaceAll('<', '&lt;')
-        .replaceAll('>', '&gt;')
-        .replaceAll('"', '&quot;')
-        .replaceAll("'", '&#039;');
-}
-</script>
+<div
+    id="comments"
+    hx-post="https://z2ujenfjtzhdngdxb7xe5pld3i.appsync-api.us-east-2.amazonaws.com/graphql"
+    hx-trigger="load"
+    hx-ext="json-enc,client-side-templates"
+    hx-swap="innerHTML"
+    mustache-template="comments-template"
+    hx-headers='{"x-api-key": "da2-zmx7kmlw7ze4hioupggncn3xtm"}'
+    hx-vals='js:{query: `query ListComments($filter: TableGrizcommentsFilterInput) { listGrizcomments(filter: $filter) { items { id name comment postSlug createdAt approved } } }`, variables: {filter: {postSlug: {eq: window.location.pathname}, approved: {eq: true}}}}'
+>
+    Loading comments...
+</div>
 
 
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
