@@ -129,10 +129,8 @@ document.addEventListener('DOMContentLoaded', function () {
             commentForm.reset();
             resetTurnstile();
 
-            // reload comments if you have that function
-            if (typeof loadComments === "function") {
-                loadComments();
-            }
+            // comments.html now loads via htmx; ask it to refresh
+            document.body.dispatchEvent(new Event('refreshComments'));
 
         } catch (error) {
             console.error("Error posting comment:", error);

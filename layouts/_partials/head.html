@@ -11,6 +11,10 @@
 <!-- htmx + client-side-templates (renders JSON API responses via Mustache) + Alpine (UI state).
      Only loaded on individual post pages (layouts/page.html), the only template that renders
      comments.html/postComment.html - section/home/tag pages don't need these. -->
+<!-- htmx 2.x defaults to selfRequestsOnly:true, blocking cross-origin requests (htmx:invalidPath).
+     Our GraphQL API lives on a different origin (AppSync) than this site, so this must be
+     disabled - htmx reads this meta tag during its own startup, before processing the page. -->
+<meta name="htmx-config" content='{"selfRequestsOnly": false}'>
 <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.10/dist/htmx.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/mustache@4.2.0/mustache.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/htmx-ext-client-side-templates@2.0.2/client-side-templates.js" defer></script>

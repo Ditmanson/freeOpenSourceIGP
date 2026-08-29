@@ -7,6 +7,10 @@
      literal {{ / }} below is emitted via {{"{{"}} / {{"}}"}} to stop Hugo
      from trying to parse it as its own template action. */}}
 <template id="comments-template">
+{{"{{"}}#errors{{"}}"}}
+<p>Error loading comments.</p>
+{{"{{"}}/errors{{"}}"}}
+{{"{{"}}^errors{{"}}"}}
 {{"{{"}}#data.listGrizcomments.items{{"}}"}}
 <div class="box">
     <strong>{{"{{"}}name{{"}}"}}</strong><br>
@@ -16,12 +20,13 @@
 {{"{{"}}^data.listGrizcomments.items{{"}}"}}
 <p>No comments yet.</p>
 {{"{{"}}/data.listGrizcomments.items{{"}}"}}
+{{"{{"}}/errors{{"}}"}}
 </template>
 
 <div
     id="comments"
     hx-post="https://z2ujenfjtzhdngdxb7xe5pld3i.appsync-api.us-east-2.amazonaws.com/graphql"
-    hx-trigger="load"
+    hx-trigger="load, refreshComments from:body"
     hx-ext="json-enc,client-side-templates"
     hx-swap="innerHTML"
     mustache-template="comments-template"
