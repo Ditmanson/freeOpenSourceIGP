@@ -13,4 +13,6 @@ Not part of a formal ticket - a direct policy change requested mid-way through t
 
 **Verified live:** a mutation sending `approved: false` in its input still landed `approved: true` (server-side override, unchanged mechanism, just flipped value) - confirmed via a temporary swap to Cloudflare's dummy always-pass Turnstile key to isolate testing this from the unrelated captcha gate, then restored to the real secret and reconfirmed the captcha gate still correctly rejects invalid tokens.
 
+**To revert:** flip `approved: true` back to `approved: false` in the `writeCommentToDynamo` AppSync function (API `3dlgu4u7cjg2pmp5zylj3zvcim`, region `us-east-2`, function ID `vky3llrbuff2nathtuzf7sjoeu` - NOT the `verifyTurnstile` function, `gikitpuimvbxnjs4wsc22xezdq`, which is a different function and unrelated to this change), then redeploy via `aws appsync update-function`.
+
 No repo/application files change - AWS resolver state only.
