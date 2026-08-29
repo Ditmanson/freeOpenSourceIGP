@@ -4,6 +4,7 @@ date: 2026-02-22T20:15:36-07:00
 tags:
   - Barking
   - Shaping
+  - protection
 
 ---
 

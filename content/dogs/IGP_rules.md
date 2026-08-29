@@ -1,6 +1,8 @@
 ---
 title: "IGP RULES"
 date: 2026-02-22T21:47:39-07:00
+tags:
+  - igp
 ---
 
 [ruleset](https://www.germanshepherddog.com/wp-content/uploads/2025/07/USCA-IGP-Rulebook-4.0-eff-1.2025.-final-1.pdf)

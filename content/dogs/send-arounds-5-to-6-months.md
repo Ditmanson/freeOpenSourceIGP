@@ -1,6 +1,8 @@
 ---
 date: '2026-04-05'
 title: 'Send Arounds 5 to 6 Months'
+tags:
+  - obedience
 ---
 
 # Steps 2 train

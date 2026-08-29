@@ -4,6 +4,7 @@ title: 'Griz 5 Months Tracking'
 tags:
   - Tracking
   - Griz
+  - nosework
 ---
 
 She's getting better about putting her nose in every footstep. This is also the first session where she indicates on an article on her own.

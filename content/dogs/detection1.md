@@ -5,6 +5,7 @@ tags:
   - griz
   - detection
   - puppy
+  - nosework
 ---
 
 In this video I'm still trying to figure out a style of video I want to make. Look how tiny she is!!! This was something I used to do with my old dog. The scent that we decide on here doesn't matter. If you have something specific to work on like narcotics then by all means, train with that.

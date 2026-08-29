@@ -1,6 +1,8 @@
 ---
 date: '2026-03-15'
 title: 'Griz 5 Months Puppy Sleeve'
+tags:
+  - protection
 ---
 
 - [Sleeve is from Ray Allen](https://www.rayallen.com/bite-suit-arm-sleeve/)

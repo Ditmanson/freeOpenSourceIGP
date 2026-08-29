@@ -1,6 +1,8 @@
 ---
 date: '2026-06-27'
 title: 'Griz 8 Month Bite Drive'
+tags:
+  - protection
 ---
 
 Currently going over the Haz's videos from sheildk9 online. He has some videos in there for building drive with dogs. He refers to it as activating the dog. The idea is pretty simle:
