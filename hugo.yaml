@@ -3,47 +3,30 @@ title: "FOSS IGP"
 
 menu:
   main:
-    - identifier: "BH"
-      name: "BH"
-      url: "/bh"
+    - identifier: "Dogs"
+      name: "Dogs"
+      url: "/dogs"
       weight: 10
 
-    - identifier: "IGP"
-      name: "IGP"
-      url: "/igp"
+    - identifier: "Meetups"
+      name: "Meetups"
+      url: "/meetups"
       weight: 20
 
-
-    - identifier: "Obedience"
-      name: "Obedience"
-      url: "/obedience"
+    - identifier: "Tech"
+      name: "Tech"
+      url: "/tech"
       weight: 30
-
-    - identifier: "Nosework"
-      name: "Nosework"
-      url: "/nosework"
-      weight: 40
-
-    - identifier: "Protection"
-      name: "Protection"
-      url: "/protection"
-      weight: 50
 
     - identifier: "Misc"
       name: "Misc"
       url: "/misc"
-      weight: 60
-
-    - identifier: "Schedule"
-      name: "Schedule"
-      url: "/schedule"
-      weight: 61
-
+      weight: 40
 
     - identifier: "Tags"
       name: "Tags"
       url: "/tags/"
-      weight: 70
+      weight: 50
 
 taxonomies:
   tag: "tags"
