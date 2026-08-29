@@ -4,11 +4,11 @@
 
 **Blocked by:** 02
 
-**Status:** ready-for-agent
+**Status:** done
 
-- [ ] `public/` is rebuilt (`rm -rf public/* && hugo`) and committed alongside the `postComment.html` changes — remembering the Issue-1-discovered gotcha that AWS Amplify's build for this app doesn't run `hugo build`, it just deploys whatever is already committed in `public/`
-- [ ] Changes are pushed and the Amplify deploy is confirmed to succeed
-- [ ] On the live site, the site owner solves the real widget and submits a comment through the actual form; the comment is confirmed to land with `approved: false` (via a table check), same as the rest of the moderation flow from Issue 1
-- [ ] A raw `curl` `createGrizcomments` call with no/garbage Turnstile token, against the live (real-key, not dummy) resolver, is confirmed rejected
-- [ ] Existing comment-viewing and previously-working submission behavior (aside from the new captcha gate) is confirmed unchanged from a site visitor's perspective
-- [ ] This is the point at which the site owner decides whether to tag a new release
+- [x] `public/` is rebuilt (`rm -rf public/* && hugo`) and committed (`7307e02`), following the `postComment.html` widget change (`515ab2f`)
+- [x] Changes are pushed and the Amplify deploy is confirmed to succeed — job 15, commit `7307e02`, `SUCCEED`
+- [x] On the live site, the site owner solved the real widget (auto-passed in Managed mode, spinner then green success) and submitted a comment through the actual form; confirmed via table scan: `"Posting a test comment to test out my captcha"` landed on `/tech/k3s-setup/` with `approved: false`
+- [x] A raw `curl` `createGrizcomments` call with no Turnstile token, against the live real-key resolver, is confirmed rejected (`Unauthorized`/"Turnstile verification failed"), with a follow-up check confirming nothing was written
+- [x] Existing comment-viewing and previously-working submission behavior (aside from the new captcha gate) is confirmed unchanged — a live `listGrizcomments` query correctly returns all 3 items (2 approved, 1 pending) with their real `approved` states intact; `comments.html` untouched since `3a0a819`
+- [ ] Tag `v1.2.0` — not yet created; happens after this ticket file is committed, per the same order used in Issues 1 and 2

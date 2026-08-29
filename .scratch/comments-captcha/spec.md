@@ -1,4 +1,4 @@
-Status: ready-for-agent
+Status: done (completed in commits 533f7a5..7307e02)
 
 # Add captcha to the comment form
 
