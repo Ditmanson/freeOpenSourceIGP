@@ -12,6 +12,8 @@
 
 
 
+
+<meta name="htmx-config" content='{"selfRequestsOnly": false}'>
 <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.10/dist/htmx.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/mustache@4.2.0/mustache.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/htmx-ext-client-side-templates@2.0.2/client-side-templates.js" defer></script>
@@ -166,6 +168,10 @@
 
 
 <template id="comments-template">
+{{#errors}}
+<p>Error loading comments.</p>
+{{/errors}}
+{{^errors}}
 {{#data.listGrizcomments.items}}
 <div class="box">
     <strong>{{name}}</strong><br>
@@ -175,12 +181,13 @@
 {{^data.listGrizcomments.items}}
 <p>No comments yet.</p>
 {{/data.listGrizcomments.items}}
+{{/errors}}
 </template>
 
 <div
     id="comments"
     hx-post="https://z2ujenfjtzhdngdxb7xe5pld3i.appsync-api.us-east-2.amazonaws.com/graphql"
-    hx-trigger="load"
+    hx-trigger="load, refreshComments from:body"
     hx-ext="json-enc,client-side-templates"
     hx-swap="innerHTML"
     mustache-template="comments-template"
@@ -322,9 +329,7 @@ document.addEventListener('DOMContentLoaded', function () {
             resetTurnstile();
 
             
-            if (typeof loadComments === "function") {
-                loadComments();
-            }
+            document.body.dispatchEvent(new Event('refreshComments'));
 
         } catch (error) {
             console.error("Error posting comment:", error);
