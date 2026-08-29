@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Karma on FOSS IGP</title>
-    <link>https://griz.sh/tags/karma/</link>
-    <description>Recent content in Karma on FOSS IGP</description>
-    <generator>Hugo</generator>
-    <language>en</language>
-    <lastBuildDate>Sun, 15 Mar 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://griz.sh/tags/karma/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Tracking 3 Dogs Begginer</title>
-      <link>https://griz.sh/nosework/tracking-3-dogs-begginer/</link>
-      <pubDate>Sun, 15 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://griz.sh/nosework/tracking-3-dogs-begginer/</guid>
-      <description>&lt;h1 class=&#34;title is-1&#34;&gt;&#xA;  Tracking&#xA;&lt;/h1&gt;&#xA;&lt;p&gt;The video is sped up by 300% in an attempt to not be so boring. 1st we have my pup, Griz. She is doing her 1st corner. She probably has the most practice at this drill out of all 3 dogs.&lt;/p&gt;&#xA;&lt;p&gt;Then we have Argos, Griz&amp;rsquo;s big brother. His nose is killer, he&amp;rsquo;s wicked smart and here we have a short clip of him tracking in the mud. His nose is fine but we went to the mud so we could bring his attention to every footstep.&lt;/p&gt;</description>
-    </item>
-  </channel>
+	<channel>
+		<title>Karma on Canine Communication with Griz</title>
+		<link>https://griz.sh/tags/karma/</link>
+		<description>Recent content in Karma on Canine Communication with Griz</description>
+		<generator>Hugo</generator>
+		<language>en</language>
+		
+		
+		
+		
+			<lastBuildDate>Sun, 15 Mar 2026 00:00:00 +0000</lastBuildDate>
+		
+			<atom:link href="https://griz.sh/tags/karma/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Tracking 3 Dogs Begginer</title>
+				<link>https://griz.sh/dogs/tracking-3-dogs-begginer/</link>
+				<pubDate>Sun, 15 Mar 2026 00:00:00 +0000</pubDate>
+				<guid>https://griz.sh/dogs/tracking-3-dogs-begginer/</guid>
+				<description>&lt;h1 class=&#34;title is-1&#34;&gt;&#xA;  Tracking&#xA;&lt;/h1&gt;&#xA;&lt;p&gt;The video is sped up by 300% in an attempt to not be so boring. 1st we have my pup, Griz. She is doing her 1st corner. She probably has the most practice at this drill out of all 3 dogs.&lt;/p&gt;&#xA;&lt;p&gt;Then we have Argos, Griz&amp;rsquo;s big brother. His nose is killer, he&amp;rsquo;s wicked smart and here we have a short clip of him tracking in the mud. His nose is fine but we went to the mud so we could bring his attention to every footstep.&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

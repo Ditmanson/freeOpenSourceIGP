@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Petdogskills on FOSS IGP</title>
-    <link>https://griz.sh/tags/petdogskills/</link>
-    <description>Recent content in Petdogskills on FOSS IGP</description>
-    <generator>Hugo</generator>
-    <language>en</language>
-    <lastBuildDate>Sat, 14 Mar 2026 07:21:22 -0600</lastBuildDate>
-    <atom:link href="https://griz.sh/tags/petdogskills/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Chill</title>
-      <link>https://griz.sh/misc/chill/</link>
-      <pubDate>Sat, 14 Mar 2026 07:21:22 -0600</pubDate>
-      <guid>https://griz.sh/misc/chill/</guid>
-      <description>&lt;p&gt;Once a day I do this with my dogs in some fashion or another. In this video, I&amp;rsquo;m listening to an audio book in my shed. Sometimes I&amp;rsquo;ll do this in the house, with the family while watching a movie. Maybe I have company over, and we are hanging out by a fire and my dogs are acting a fool, so I&amp;rsquo;ll put them in a down and work this chill training. In this video I&amp;rsquo;m shaping focus as well. That&amp;rsquo;s not necessary; however, if you are doing chill training with just you and your pups, then you might as well practice.&lt;/p&gt;</description>
-    </item>
-  </channel>
+	<channel>
+		<title>Petdogskills on Canine Communication with Griz</title>
+		<link>https://griz.sh/tags/petdogskills/</link>
+		<description>Recent content in Petdogskills on Canine Communication with Griz</description>
+		<generator>Hugo</generator>
+		<language>en</language>
+		
+		
+		
+		
+			<lastBuildDate>Sat, 14 Mar 2026 07:21:22 -0600</lastBuildDate>
+		
+			<atom:link href="https://griz.sh/tags/petdogskills/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Chill</title>
+				<link>https://griz.sh/misc/chill/</link>
+				<pubDate>Sat, 14 Mar 2026 07:21:22 -0600</pubDate>
+				<guid>https://griz.sh/misc/chill/</guid>
+				<description>&lt;p&gt;Once a day I do this with my dogs in some fashion or another. In this video, I&amp;rsquo;m listening to an audio book in my shed. Sometimes I&amp;rsquo;ll do this in the house, with the family while watching a movie. Maybe I have company over, and we are hanging out by a fire and my dogs are acting a fool, so I&amp;rsquo;ll put them in a down and work this chill training. In this video I&amp;rsquo;m shaping focus as well. That&amp;rsquo;s not necessary; however, if you are doing chill training with just you and your pups, then you might as well practice.&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

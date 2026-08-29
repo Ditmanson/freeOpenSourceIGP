@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+<title>
+  
+    K3s Setup | Canine Communication with Griz
+  
+</title>
+
+  </head>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
+  >
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
+  <style>
+  h1, h2, h3 {
+  font-family: 'Anton', sans-serif;
+  }
+  </style>
+  <body>
+    <header>
+      <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/">
+      <strong>Canine Communication with Griz</strong>
+    </a>
+
+    
+    <a role="button"
+       class="navbar-burger"
+       aria-label="menu"
+       aria-expanded="true"
+       data-target="mainNavbar">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="mainNavbar" class="navbar-menu">
+    <div class="navbar-start">
+      
+        <a href="/dogs" class="navbar-item">
+          Dogs
+        </a>
+      
+        <a href="/meetups" class="navbar-item">
+          Meetups
+        </a>
+      
+        <a href="/tech" class="navbar-item">
+          Tech
+        </a>
+      
+        <a href="/misc" class="navbar-item">
+          Misc
+        </a>
+      
+        <a href="/tags/" class="navbar-item">
+          Tags
+        </a>
+      
+    </div>
+  </div>
+</nav>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+    
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    
+    $navbarBurgers.forEach(el => {
+      el.addEventListener('click', () => {
+
+        
+        const target = el.dataset.target;
+        const $target = document.getElementById(target);
+
+        
+        el.classList.toggle('is-active');
+        $target.classList.toggle('is-active');
+
+      });
+    });
+
+  });
+</script>
+
+
+    </header>
+
+    <main>
+      
+
+<article class="section">
+  <div class="block">
+    <h1>K3s Setup</h1>
+    <h1 class="title is-1">
+  Pre-reqs
+</h1>
+<ol>
+<li>Install OS on machines, <a href="https://debian.osuosl.org/debian-cdimage/13.5.0/">Debian iso&rsquo;s</a></li>
+<li>We need to configure static ip&rsquo;s for these machines and for <a href="https://metallb.io/">metallb</a></li>
+<li>SSH access</li>
+</ol>
+<p>I gave you debian as an example because most instructions are written for ubuntu, and ubuntu is based on debian, just with extra garbage preinstalled. If it turns out we need any of that we&rsquo;ll get it when we need it. A lot of people, probably including your ai, are going
+to recommend <a href="https://www.siderolabs.com/talos-linux">Talos</a>, Because it&rsquo;s written for kubernetes. But there&rsquo;s less examples of using it on the internet. So more security but harder to work with. <strong>Do not use anything Arch based</strong>, it&rsquo;s funner but it breaks alot and I don&rsquo;t think it&rsquo;s going to be a good fit for you.</p>
+<p>When you do the install on these machines. We probably want a desktop for 1 machine. That machine will be our server node, and we can use it to control your cluster, run your database, look at metrics and all that. Any additional machines we use for the cluster can be headless to save on resources. If that doesn&rsquo;t make sense, then just ask your ai while you do this.</p>
+<p>When you run this through your AI, couple things to add to your prompt. You are going to want to verify the hash on the iso, ask your ai how to do that. Pretty common vulnerability in linux is downloading OS&rsquo;s with additional stuff in them. We verify the sha256 hash to ensure we aren&rsquo;t grabbing extra stuff <em>like virus&rsquo;s or spyware</em></p>
+<p>When you run the ssh commands, you&rsquo;ll get a public key and a private key. If your private key makes it on the internet in any way, then we want to delete it, make a new pair, and then replace public keys anywhere we might have put them.</p>
+<p>Do not give the private key to claude or your buddy. If you want to set remote access to the system, then we can do that later with <a href="https://tailscale.com/">tailscale</a></p>
+<p>Also if you want me to do all this with/for you then we can do that too. Just not gonna give you copy and paste commands because I have all this set up already.</p>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+			<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/7gkVUIlzOzg?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+		</div>
+
+<ul>
+<li>Commands for ssh <code>ssh-keygen</code> just take defaults.</li>
+<li>copy the public key from your host machine to your remote <code>ssh &lt;username&gt;@&lt;local ip&gt;</code> first time you need a password</li>
+<li>paste the public key at <code>~/.ssh/authoized_keys</code>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+			<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/HbCYeQNs0E4?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+		</div>
+</li>
+</ul>
+<h1 class="title is-1">
+  K3s install
+</h1>
+<h2 class="title is-2">
+  Server node
+</h2>
+<ul>
+<li><code>curl -sfL https://get.k3s.io | sh -s - server   --write-kubeconfig-mode 644   --disable servicelb</code> &lt;- for the control/server node</li>
+<li><code>sudo cat /etc/rancher/k3s/k3s.yaml &gt; ~/.kube/kubeconfig</code> &lt;- for putting the kubeconfig in the defualt location</li>
+<li><code>sudo cat /var/lib/rancher/k3s/server/node-token</code> &lt;- for grabbing the token to add worker nodes</li>
+</ul>
+<h2 class="title is-2">
+  Worker node
+</h2>
+<ul>
+<li><code>curl -sfL https://get.k3s.io | K3S_URL=https://&lt;ENTER YOUR SERVER IP&gt;:6443 K3S_TOKEN=&lt;ENTER YOUR NODE-TOKEN&gt;  sh -s -</code></li>
+</ul>
+<h2 class="title is-2">
+  Test from server node
+</h2>
+<ul>
+<li><code>kubectl get nodes</code></li>
+<li><a href="https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/">download kubectl if you don&rsquo;t have it</a></li>
+</ul>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+			<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/muxITGejyjI?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+		</div>
+
+<h1 class="title is-1">
+  Metallb
+</h1>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+			<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/xZiR43fAalQ?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+		</div>
+
+<ul>
+<li><code>kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.16.1/config/manifests/metallb-native.yaml</code> &lt;- install loadbalancers</li>
+<li><code>kubectl get pods -A</code> &lt;- ensure you can see the loadbalancers</li>
+<li>create an ipaddresspool.yaml</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">metallb.io/v1beta1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">IPAddressPool</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">adress-pool</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">metallb-system</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">addresses</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">&lt;change to your cidr range&gt;</span>
+</span></span></code></pre></div><ul>
+<li><code>kubectl apply -f ipaddresspool.yaml</code> &lt;- set the cidr range for your loadbalancers</li>
+<li>creat l2config.yaml</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">metallb.io/v1beta1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">L2Advertisement</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">adress-pool</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">metallb-system</span>
+</span></span></code></pre></div><ul>
+<li><code>kubectl apply -f l2config.yaml</code> &lt;- apply l2config</li>
+</ul>
+<h2 class="title is-2">
+  Testing it
+</h2>
+<ul>
+<li>mkdir test</li>
+<li>cd test</li>
+<li>create deploy.yaml</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apps/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">my-nginx</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">matchLabels</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">run</span>: <span style="color:#ae81ff">my-nginx</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">replicas</span>: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">template</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">run</span>: <span style="color:#ae81ff">my-nginx</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">containers</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">my-nginx</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">image</span>: <span style="color:#ae81ff">nginx</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">containerPort</span>: <span style="color:#ae81ff">80</span>
+</span></span></code></pre></div><ul>
+<li><code>kubectl apply -f deploy.yaml</code> &lt;- apply deployment</li>
+<li>create service.yaml</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Service</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">my-nginx</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">run</span>: <span style="color:#ae81ff">my-nginx</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">type</span>: <span style="color:#ae81ff">LoadBalancer</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">port</span>: <span style="color:#ae81ff">80</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">protocol</span>: <span style="color:#ae81ff">TCP</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">run</span>: <span style="color:#ae81ff">my-nginx</span>
+</span></span></code></pre></div><ul>
+<li><code>kubectl apply -f service.yaml</code> &lt;- apply service</li>
+<li><code>kubectl get svc</code> &lt;- check if you have a service and that it&rsquo;s running on an ip</li>
+<li><code>kubectl get pods -w</code> &lt;- wait for pods to come up, ctrl+c to exit this watch screen</li>
+</ul>
+<h2 class="title is-2">
+  Clean up test
+</h2>
+<ul>
+<li><code>kubectl delete -f deploy.yaml</code></li>
+<li><code>kubectl delete -f service.yaml</code></li>
+</ul>
+<h1 class="title is-1">
+  A note about my notes
+</h1>
+<p>I&rsquo;m running into some issues with my OS of choice here. I&rsquo;m going to switch over to debian, this will mean i won&rsquo;t have screen recording until I get around to setting it up.</p>
+<h1 class="title is-1">
+  istio
+</h1>
+<p>I didn&rsquo;t take real good notes for this. We want istio for our ingress/egress in and out of our deployed applications. Later we&rsquo;ll make k8 resources for it but for now I ran these commands:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>curl -L https://istio.io/downloadIstio | sh -
+</span></span><span style="display:flex;"><span>sudo mv bin/istioctl /usr/bin/
+</span></span><span style="display:flex;"><span>istioctl
+</span></span><span style="display:flex;"><span>istioctl install --set profile<span style="color:#f92672">=</span>default -y
+</span></span></code></pre></div><ul>
+<li><a href="https://istio.io/latest/docs/setup/install/istioctl/">docs for istio install</a></li>
+</ul>
+<p>After it all installs let&rsquo;s make sure we have all the correct resources. I&rsquo;m gonna paste my output below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># kubectl get svc -A</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>NAMESPACE        NAME                          TYPE           CLUSTER-IP      EXTERNAL-IP     PORT<span style="color:#f92672">(</span>S<span style="color:#f92672">)</span>                                      AGE
+</span></span><span style="display:flex;"><span>default          kubernetes                    ClusterIP      10.43.0.1       &lt;none&gt;          443/TCP                                      4h41m
+</span></span><span style="display:flex;"><span>istio-system     istio-ingressgateway          LoadBalancer   10.43.92.106    192.168.1.201   15021:30629/TCP,80:32725/TCP,443:30697/TCP   4h8m
+</span></span><span style="display:flex;"><span>istio-system     istiod                        ClusterIP      10.43.6.143     &lt;none&gt;          15010/TCP,15012/TCP,443/TCP,15014/TCP        4h9m
+</span></span><span style="display:flex;"><span>istio-system     istiod-revision-tag-default   ClusterIP      10.43.56.157    &lt;none&gt;          15010/TCP,15012/TCP,443/TCP,15014/TCP        4h8m
+</span></span><span style="display:flex;"><span>kube-system      kube-dns                      ClusterIP      10.43.0.10      &lt;none&gt;          53/UDP,53/TCP,9153/TCP                       4h41m
+</span></span><span style="display:flex;"><span>kube-system      metrics-server                ClusterIP      10.43.120.98    &lt;none&gt;          443/TCP                                      4h41m
+</span></span><span style="display:flex;"><span>kube-system      traefik                       LoadBalancer   10.43.3.87      192.168.1.200   80:30685/TCP,443:31688/TCP                   4h39m
+</span></span><span style="display:flex;"><span>metallb-system   metallb-webhook-service       ClusterIP      10.43.195.185   &lt;none&gt;          443/TCP                                      4h19m
+</span></span></code></pre></div><p>Up there there in the services, the one we are looking for has the type Load Balancer, it&rsquo;s in the istio-system namespace and it&rsquo;s name isistio-ingressgateway. You see the External-IP there, that&rsquo;s where we redirect our router network to go and we&rsquo;ll just use port 443:80.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># kubectl get pods -A</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>NAMESPACE        NAME                                      READY   STATUS      RESTARTS        AGE
+</span></span><span style="display:flex;"><span>istio-system     istio-ingressgateway-5fdd5ff474-8s7pc     1/1     Running     <span style="color:#ae81ff">0</span>               38m
+</span></span><span style="display:flex;"><span>istio-system     istiod-5688cf5cb9-9c6tf                   1/1     Running     <span style="color:#ae81ff">1</span> <span style="color:#f92672">(</span>38m ago<span style="color:#f92672">)</span>     4h10m
+</span></span><span style="display:flex;"><span>kube-system      coredns-5f5694d56b-vzvws                  1/1     Running     <span style="color:#ae81ff">1</span> <span style="color:#f92672">(</span>38m ago<span style="color:#f92672">)</span>     4h42m
+</span></span><span style="display:flex;"><span>kube-system      csi-nfs-controller-fccdc96d7-gc7qc        5/5     Running     <span style="color:#ae81ff">9</span> <span style="color:#f92672">(</span>23m ago<span style="color:#f92672">)</span>     4h6m
+</span></span><span style="display:flex;"><span>kube-system      csi-nfs-node-xhs8x                        3/3     Running     <span style="color:#ae81ff">3</span> <span style="color:#f92672">(</span>38m ago<span style="color:#f92672">)</span>     4h6m
+</span></span><span style="display:flex;"><span>kube-system      csi-nfs-node-xncrf                        3/3     Running     <span style="color:#ae81ff">3</span> <span style="color:#f92672">(</span>38m ago<span style="color:#f92672">)</span>     4h6m
+</span></span><span style="display:flex;"><span>kube-system      helm-install-traefik-crd-fcrgg            0/1     Completed   <span style="color:#ae81ff">0</span>               4h42m
+</span></span><span style="display:flex;"><span>kube-system      helm-install-traefik-w9vdg                0/1     Completed   <span style="color:#ae81ff">1</span> <span style="color:#f92672">(</span>4h41m ago<span style="color:#f92672">)</span>   4h42m
+</span></span><span style="display:flex;"><span>kube-system      local-path-provisioner-58d557dc48-xm6zk   1/1     Running     <span style="color:#ae81ff">1</span> <span style="color:#f92672">(</span>38m ago<span style="color:#f92672">)</span>     4h42m
+</span></span><span style="display:flex;"><span>kube-system      metrics-server-7c86f97b8d-fsgxk           1/1     Running     <span style="color:#ae81ff">1</span> <span style="color:#f92672">(</span>38m ago<span style="color:#f92672">)</span>     4h42m
+</span></span><span style="display:flex;"><span>kube-system      traefik-6cd8c7cd89-mz7zb                  1/1     Running     <span style="color:#ae81ff">1</span> <span style="color:#f92672">(</span>38m ago<span style="color:#f92672">)</span>     4h41m
+</span></span><span style="display:flex;"><span>metallb-system   controller-658745d67-mjq6r                1/1     Running     <span style="color:#ae81ff">1</span> <span style="color:#f92672">(</span>38m ago<span style="color:#f92672">)</span>     4h20m
+</span></span><span style="display:flex;"><span>metallb-system   speaker-tlllg                             1/1     Running     <span style="color:#ae81ff">1</span> <span style="color:#f92672">(</span>38m ago<span style="color:#f92672">)</span>     4h20m
+</span></span><span style="display:flex;"><span>metallb-system   speaker-xgt7m                             1/1     Running     <span style="color:#ae81ff">1</span> <span style="color:#f92672">(</span>38m ago<span style="color:#f92672">)</span>     4h20m
+</span></span></code></pre></div><h1 class="title is-1">
+  NFS csi server
+</h1>
+<p>I also didn&rsquo;t take good notes for setting up the NFS server, but it&rsquo;s probably going to be way different for you anyways.</p>
+<ul>
+<li><a href="https://github.com/kubernetes-csi/csi-driver-nfs">Helm Charts</a>, we&rsquo;ll use these to install it but not yet, first we need to prep the nas.</li>
+<li><a href="https://canonical.com/microk8s/docs/how-to-nfs">NFS Setup</a> &lt;- this has instructions for tting up our file sharing system on a linux distro. Your NAS you bought is probably going to be different. The steps for some of this will be the same though:</li>
+</ul>
+<ol>
+<li>We need to make a partition or share with open permissions available to everyone, or atleast the users we designate.</li>
+<li>We need to expose that share/partition to a cidr range with some permission sets.</li>
+<li>Then we need to install the K8 resources with helm.</li>
+<li>And finally we build a storage class object for it.</li>
+<li>Test it</li>
+</ol>
+<h2 class="title is-2">
+  Helm
+</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm repo add csi-driver-nfs https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/charts
+</span></span><span style="display:flex;"><span>helm install csi-driver-nfs csi-driver-nfs/csi-driver-nfs --namespace kube-system --version 4.12.0
+</span></span></code></pre></div><p>For the storga Class object, it&rsquo;s gonna be better we just provide your AI with the information about the share/partition you made and let it give make it, on that note we&rsquo;ll have your ai make a pvc resource to test it as well.</p>
+<h1 class="title is-1">
+  Database
+</h1>
+<p>This might end up being the hard part for you. I&rsquo;m going to deploy a database on the cluster. We might consider hosting this differently on your setup if anything goes wrong here. This is a part where we&rsquo;d start setting stuff up for your application as well. I&rsquo;m not deploying my own app right now, so I&rsquo;m going to be deploying a photo server instead. So this is an example, not a step by step copy and paste this time.</p>
+<h2 class="title is-2">
+  Helm install of cnpg
+</h2>
+<p>From <a href="https://github.com/cloudnative-pg/charts/tree/main/charts/cloudnative-pg">helm docs</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm repo add cnpg https://cloudnative-pg.github.io/charts
+</span></span><span style="display:flex;"><span>helm repo update
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm upgrade --install cnpg <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --namespace cnpg-system <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --create-namespace <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  cnpg/cloudnative-pg
+</span></span></code></pre></div>
+  </div>
+</article>
+
+<h1>K3s Setup</h1>
+
+<h2>Comments</h2>
+
+
+<div id="commentsList" style="display:none;">
+    <div id="comments" class="box"></div>
+</div>
+
+
+<div id="noCommentsMessage">Loading comments...</div>
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+    loadComments();
+});
+
+const GRAPHQL_ENDPOINT = "https://z2ujenfjtzhdngdxb7xe5pld3i.appsync-api.us-east-2.amazonaws.com/graphql";
+const API_KEY = "da2-sk3e55afnreqlouickerohnxsa";
+
+async function loadComments() {
+    const commentsContainer = document.getElementById('comments');
+    const commentsList = document.getElementById('commentsList');
+    const noCommentsMessage = document.getElementById('noCommentsMessage');
+
+    const postSlug = window.location.pathname;
+
+    const query = `
+        query ListComments($filter: TableGrizcommentsFilterInput) {
+            listGrizcomments(filter: $filter) {
+                items {
+                    id
+                    name
+                    comment
+                    postSlug
+                    createdAt
+                    approved
+                }
+            }
+        }
+    `;
+
+    const variables = {
+        filter: {
+            postSlug: {
+                eq: postSlug
+            },
+            approved: {
+                eq: true
+            }
+        }
+    };
+
+    try {
+        const response = await fetch(GRAPHQL_ENDPOINT, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "x-api-key": API_KEY
+            },
+            body: JSON.stringify({
+                query,
+                variables
+            })
+        });
+
+        const result = await response.json();
+
+        if (result.errors) {
+            console.error(result.errors);
+            throw new Error("GraphQL error");
+        }
+
+        const items = result.data.listGrizcomments.items || [];
+
+        commentsContainer.innerHTML = '';
+
+        if (items.length === 0) {
+            noCommentsMessage.innerText = "No comments yet.";
+            noCommentsMessage.style.display = "block";
+            commentsList.style.display = "none";
+            return;
+        }
+
+        noCommentsMessage.style.display = "none";
+        commentsList.style.display = "block";
+
+        items.forEach(comment => {
+            const div = document.createElement('div');
+            div.className = 'box';
+
+            div.innerHTML = `
+                <strong>${escapeHtml(comment.name)}</strong><br>
+                <p>${escapeHtml(comment.comment)}</p>
+            `;
+
+            commentsContainer.appendChild(div);
+        });
+
+    } catch (err) {
+        console.error('Error loading comments:', err);
+        noCommentsMessage.innerText = "Error loading comments.";
+    }
+}
+
+
+function escapeHtml(str) {
+    return String(str)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#039;');
+}
+</script>
+
+
+<div class="box">
+    <h3 class="title is-4">Post a Comment</h3>
+    <form id="commentForm">
+        <div class="field">
+            <label class="label">Name</label>
+            <div class="control">
+                <input class="input" type="text" id="name" placeholder="Your Name" required />
+            </div>
+        </div>
+        
+        <div class="field">
+            <label class="label">Comment</label>
+            <div class="control">
+                <textarea class="textarea" id="comment" placeholder="Your comment..." required></textarea>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <button type="submit" class="button is-link">Post Comment</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const commentForm = document.getElementById('commentForm');
+
+    const GRAPHQL_ENDPOINT = "https://z2ujenfjtzhdngdxb7xe5pld3i.appsync-api.us-east-2.amazonaws.com/graphql";
+    const API_KEY = "da2-sk3e55afnreqlouickerohnxsa";
+
+    commentForm.addEventListener('submit', async function (event) {
+        event.preventDefault();
+
+        const name = document.getElementById('name').value;
+        const comment = document.getElementById('comment').value;
+
+        
+        const postSlug = window.location.pathname;
+
+        const mutation = `
+            mutation CreateComment($input: CreateGrizcommentsInput!) {
+                createGrizcomments(input: $input) {
+                    id
+                    name
+                    comment
+                    postSlug
+                    createdAt
+                    approved
+                }
+            }
+        `;
+
+        const variables = {
+            input: {
+                id: crypto.randomUUID(),
+                name: name,
+                comment: comment,
+                url: "https://griz.sh",   
+                postSlug: postSlug,
+                approved: true,
+                createdAt: new Date().toISOString()
+            }
+        };
+
+        try {
+            const response = await fetch(GRAPHQL_ENDPOINT, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "x-api-key": API_KEY
+                },
+                body: JSON.stringify({
+                    query: mutation,
+                    variables: variables
+                })
+            });
+
+            const result = await response.json();
+
+            if (result.errors) {
+                console.error("GraphQL errors:", result.errors);
+                throw new Error("Failed to post comment");
+            }
+
+            console.log("Posted comment:", result.data);
+
+            
+            commentForm.reset();
+
+            
+            if (typeof loadComments === "function") {
+                loadComments();
+            }
+
+        } catch (error) {
+            console.error("Error posting comment:", error);
+        }
+    });
+});
+</script>
+
+
+
+    </main>
+
+    <footer>
+      <div class="section">
+<p>Griz Canine Communication 2026.</p>
+</div>
+
+    </footer>
+  </body>
+</html>

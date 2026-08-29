@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Tech on Canine Communication with Griz</title>
+		<link>https://griz.sh/tech/</link>
+		<description>Recent content in Tech on Canine Communication with Griz</description>
+		<generator>Hugo</generator>
+		<language>en</language>
+		
+		
+		
+		
+			<lastBuildDate>Sat, 04 Jul 2026 00:00:00 +0000</lastBuildDate>
+		
+			<atom:link href="https://griz.sh/tech/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>K3s Setup</title>
+				<link>https://griz.sh/tech/k3s-setup/</link>
+				<pubDate>Sat, 04 Jul 2026 00:00:00 +0000</pubDate>
+				<guid>https://griz.sh/tech/k3s-setup/</guid>
+				<description>&lt;h1 class=&#34;title is-1&#34;&gt;&#xA;  Pre-reqs&#xA;&lt;/h1&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Install OS on machines, &lt;a href=&#34;https://debian.osuosl.org/debian-cdimage/13.5.0/&#34;&gt;Debian iso&amp;rsquo;s&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;We need to configure static ip&amp;rsquo;s for these machines and for &lt;a href=&#34;https://metallb.io/&#34;&gt;metallb&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;SSH access&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;I gave you debian as an example because most instructions are written for ubuntu, and ubuntu is based on debian, just with extra garbage preinstalled. If it turns out we need any of that we&amp;rsquo;ll get it when we need it. A lot of people, probably including your ai, are going&#xA;to recommend &lt;a href=&#34;https://www.siderolabs.com/talos-linux&#34;&gt;Talos&lt;/a&gt;, Because it&amp;rsquo;s written for kubernetes. But there&amp;rsquo;s less examples of using it on the internet. So more security but harder to work with. &lt;strong&gt;Do not use anything Arch based&lt;/strong&gt;, it&amp;rsquo;s funner but it breaks alot and I don&amp;rsquo;t think it&amp;rsquo;s going to be a good fit for you.&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>

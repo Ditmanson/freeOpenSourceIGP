@@ -1,8 +1,7 @@
 ---
-title: "Free Open Source IGP"
+title: "Canine Commulication with Griz"
 ---
-
 
 ![index](/griz_and_i.png "is-16by9")
 
-Training our dog to be something between a sport dog, a pet dog, and a asset in home protection.
+Using Classical and Operant Conditioning to establish clear canine communication with in the theory of associative learning.

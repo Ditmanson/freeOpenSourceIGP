@@ -1,40 +1,38 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Miscs on FOSS IGP</title>
-    <link>https://griz.sh/misc/</link>
-    <description>Recent content in Miscs on FOSS IGP</description>
-    <generator>Hugo</generator>
-    <language>en</language>
-    <lastBuildDate>Sat, 04 Jul 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://griz.sh/misc/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>K3s Setup</title>
-      <link>https://griz.sh/misc/k3s-setup/</link>
-      <pubDate>Sat, 04 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>https://griz.sh/misc/k3s-setup/</guid>
-      <description>&lt;h1 class=&#34;title is-1&#34;&gt;&#xA;  Pre-reqs&#xA;&lt;/h1&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Install OS on machines, &lt;a href=&#34;https://debian.osuosl.org/debian-cdimage/13.5.0/&#34;&gt;Debian iso&amp;rsquo;s&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;We need to configure static ip&amp;rsquo;s for these machines and for &lt;a href=&#34;https://metallb.io/&#34;&gt;metallb&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;SSH access&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;I gave you debian as an example because most instructions are written for ubuntu, and ubuntu is based on debian, just with extra garbage preinstalled. If it turns out we need any of that we&amp;rsquo;ll get it when we need it. A lot of people, probably including your ai, are going&#xA;to recommend &lt;a href=&#34;https://www.siderolabs.com/talos-linux&#34;&gt;Talos&lt;/a&gt;, Because it&amp;rsquo;s written for kubernetes. But there&amp;rsquo;s less examples of using it on the internet. So more security but harder to work with. &lt;strong&gt;Do not use anything Arch based&lt;/strong&gt;, it&amp;rsquo;s funner but it breaks alot and I don&amp;rsquo;t think it&amp;rsquo;s going to be a good fit for you.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Chill</title>
-      <link>https://griz.sh/misc/chill/</link>
-      <pubDate>Sat, 14 Mar 2026 07:21:22 -0600</pubDate>
-      <guid>https://griz.sh/misc/chill/</guid>
-      <description>&lt;p&gt;Once a day I do this with my dogs in some fashion or another. In this video, I&amp;rsquo;m listening to an audio book in my shed. Sometimes I&amp;rsquo;ll do this in the house, with the family while watching a movie. Maybe I have company over, and we are hanging out by a fire and my dogs are acting a fool, so I&amp;rsquo;ll put them in a down and work this chill training. In this video I&amp;rsquo;m shaping focus as well. That&amp;rsquo;s not necessary; however, if you are doing chill training with just you and your pups, then you might as well practice.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Diet</title>
-      <link>https://griz.sh/misc/diet/</link>
-      <pubDate>Sun, 22 Feb 2026 22:24:23 -0700</pubDate>
-      <guid>https://griz.sh/misc/diet/</guid>
-      <description>&lt;p&gt;You can feed your dog kibble, alot of people do and have dogs that live long full lives. I had 1 amazing dog who couldn&amp;rsquo;t digest kibble which forced us down a long road of raw food. We&amp;rsquo;ve done it alot of ways. At times we saved money by getting stuff from farmers to include livers, hearts, kidnies and all that. That turned out to be gross for me and gross for the dogs. Yeah that&amp;rsquo;s what I said, dogs don&amp;rsquo;t like the way organs taste. I&amp;rsquo;ve checked with like 5 dogs and 5 out of 5 didn&amp;rsquo;t like the organs. they would eat it if i forced them by not feeding them, but they would pass if they weren&amp;rsquo;t starving. I then moved to premade raw grinds for a while and that was ok. But if you watch documentaries, you&amp;rsquo;ll notice that even the wolves eat berries and grass and non meat items from time to time, and we use fruit and veggies, and supplements in kibble already so we ended up looking for non-meat options to get the micro-nutrients. You can make your own and save money but i lack time, so I use dr. harvey&amp;rsquo;s. The instructions say to mix it with hot water, meat, oil and serve. But i find that if you i do that, then denali won&amp;rsquo;t eat it. so instead of hot water, i mix it with an egg, atleast for dinner when denali is eating. In the morning i just mix it with hot water and some meat for griz. She&amp;rsquo;ll eat anything.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Small challegnes</title>
-      <link>https://griz.sh/misc/small_challegnes/</link>
-      <pubDate>Sun, 22 Feb 2026 19:42:42 -0700</pubDate>
-      <guid>https://griz.sh/misc/small_challegnes/</guid>
-      <description>&lt;p&gt;Also called a confidence course or maybe a DIY beginner agility course. But we spent a full deployment watching Stonnie Dennis videos so&amp;hellip; We&amp;rsquo;re gonna call it small challenges Course. This is day 2 after building, I got my wife to come out and help establish a proper baseline for both pups.&lt;/p&gt;&#xA;&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;&#xA;      &lt;iframe allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen&#34; loading=&#34;eager&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; src=&#34;https://www.youtube.com/embed/eSAh2Mgju_s?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; title=&#34;YouTube video&#34;&gt;&lt;/iframe&gt;&#xA;    &lt;/div&gt;</description>
-    </item>
-  </channel>
+	<channel>
+		<title>Misc on Canine Communication with Griz</title>
+		<link>https://griz.sh/misc/</link>
+		<description>Recent content in Misc on Canine Communication with Griz</description>
+		<generator>Hugo</generator>
+		<language>en</language>
+		
+		
+		
+		
+			<lastBuildDate>Sat, 14 Mar 2026 07:21:22 -0600</lastBuildDate>
+		
+			<atom:link href="https://griz.sh/misc/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Chill</title>
+				<link>https://griz.sh/misc/chill/</link>
+				<pubDate>Sat, 14 Mar 2026 07:21:22 -0600</pubDate>
+				<guid>https://griz.sh/misc/chill/</guid>
+				<description>&lt;p&gt;Once a day I do this with my dogs in some fashion or another. In this video, I&amp;rsquo;m listening to an audio book in my shed. Sometimes I&amp;rsquo;ll do this in the house, with the family while watching a movie. Maybe I have company over, and we are hanging out by a fire and my dogs are acting a fool, so I&amp;rsquo;ll put them in a down and work this chill training. In this video I&amp;rsquo;m shaping focus as well. That&amp;rsquo;s not necessary; however, if you are doing chill training with just you and your pups, then you might as well practice.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Diet</title>
+				<link>https://griz.sh/misc/diet/</link>
+				<pubDate>Sun, 22 Feb 2026 22:24:23 -0700</pubDate>
+				<guid>https://griz.sh/misc/diet/</guid>
+				<description>&lt;p&gt;You can feed your dog kibble, alot of people do and have dogs that live long full lives. I had 1 amazing dog who couldn&amp;rsquo;t digest kibble which forced us down a long road of raw food. We&amp;rsquo;ve done it alot of ways. At times we saved money by getting stuff from farmers to include livers, hearts, kidnies and all that. That turned out to be gross for me and gross for the dogs. Yeah that&amp;rsquo;s what I said, dogs don&amp;rsquo;t like the way organs taste. I&amp;rsquo;ve checked with like 5 dogs and 5 out of 5 didn&amp;rsquo;t like the organs. they would eat it if i forced them by not feeding them, but they would pass if they weren&amp;rsquo;t starving. I then moved to premade raw grinds for a while and that was ok. But if you watch documentaries, you&amp;rsquo;ll notice that even the wolves eat berries and grass and non meat items from time to time, and we use fruit and veggies, and supplements in kibble already so we ended up looking for non-meat options to get the micro-nutrients. You can make your own and save money but i lack time, so I use dr. harvey&amp;rsquo;s. The instructions say to mix it with hot water, meat, oil and serve. But i find that if you i do that, then denali won&amp;rsquo;t eat it. so instead of hot water, i mix it with an egg, atleast for dinner when denali is eating. In the morning i just mix it with hot water and some meat for griz. She&amp;rsquo;ll eat anything.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Small challegnes</title>
+				<link>https://griz.sh/misc/small_challegnes/</link>
+				<pubDate>Sun, 22 Feb 2026 19:42:42 -0700</pubDate>
+				<guid>https://griz.sh/misc/small_challegnes/</guid>
+				<description>&lt;p&gt;Also called a confidence course or maybe a DIY beginner agility course. But we spent a full deployment watching Stonnie Dennis videos so&amp;hellip; We&amp;rsquo;re gonna call it small challenges Course. This is day 2 after building, I got my wife to come out and help establish a proper baseline for both pups.&lt;/p&gt;&#xA;&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;&#xA;&#x9;&#x9;&#x9;&lt;iframe allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen&#34; loading=&#34;eager&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; src=&#34;https://www.youtube.com/embed/eSAh2Mgju_s?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; title=&#34;YouTube video&#34;&gt;&lt;/iframe&gt;&#xA;&#x9;&#x9;&lt;/div&gt;</description>
+			</item>
+	</channel>
 </rss>

@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Tracking on FOSS IGP</title>
-    <link>https://griz.sh/tags/tracking/</link>
-    <description>Recent content in Tracking on FOSS IGP</description>
-    <generator>Hugo</generator>
-    <language>en</language>
-    <lastBuildDate>Sat, 14 Mar 2026 07:19:22 -0600</lastBuildDate>
-    <atom:link href="https://griz.sh/tags/tracking/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Griz 5 Months Tracking</title>
-      <link>https://griz.sh/nosework/griz-5-months-tracking/</link>
-      <pubDate>Sat, 14 Mar 2026 07:19:22 -0600</pubDate>
-      <guid>https://griz.sh/nosework/griz-5-months-tracking/</guid>
-      <description>&lt;p&gt;She&amp;rsquo;s getting better about putting her nose in every footstep. This is also the first session where she indicates on an article on her own.&lt;/p&gt;&#xA;&lt;p&gt;{{ &amp;lt;youtube 0qHwF1halxQ&amp;gt; }}&lt;/p&gt;</description>
-    </item>
-  </channel>
+	<channel>
+		<title>Tracking on Canine Communication with Griz</title>
+		<link>https://griz.sh/tags/tracking/</link>
+		<description>Recent content in Tracking on Canine Communication with Griz</description>
+		<generator>Hugo</generator>
+		<language>en</language>
+		
+		
+		
+		
+			<lastBuildDate>Sat, 14 Mar 2026 07:19:22 -0600</lastBuildDate>
+		
+			<atom:link href="https://griz.sh/tags/tracking/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Griz 5 Months Tracking</title>
+				<link>https://griz.sh/dogs/griz-5-months-tracking/</link>
+				<pubDate>Sat, 14 Mar 2026 07:19:22 -0600</pubDate>
+				<guid>https://griz.sh/dogs/griz-5-months-tracking/</guid>
+				<description>&lt;p&gt;She&amp;rsquo;s getting better about putting her nose in every footstep. This is also the first session where she indicates on an article on her own.&lt;/p&gt;&#xA;&lt;p&gt;{{ &amp;lt;youtube 0qHwF1halxQ&amp;gt; }}&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

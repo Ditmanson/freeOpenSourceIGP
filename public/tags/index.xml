@@ -1,82 +1,122 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Tags on FOSS IGP</title>
-    <link>https://griz.sh/tags/</link>
-    <description>Recent content in Tags on FOSS IGP</description>
-    <generator>Hugo</generator>
-    <language>en</language>
-    <lastBuildDate>Sun, 15 Mar 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://griz.sh/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Argos</title>
-      <link>https://griz.sh/tags/argos/</link>
-      <pubDate>Sun, 15 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://griz.sh/tags/argos/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Griz</title>
-      <link>https://griz.sh/tags/griz/</link>
-      <pubDate>Sun, 15 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://griz.sh/tags/griz/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Karma</title>
-      <link>https://griz.sh/tags/karma/</link>
-      <pubDate>Sun, 15 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://griz.sh/tags/karma/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Chill</title>
-      <link>https://griz.sh/tags/chill/</link>
-      <pubDate>Sat, 14 Mar 2026 07:21:22 -0600</pubDate>
-      <guid>https://griz.sh/tags/chill/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Petdogskills</title>
-      <link>https://griz.sh/tags/petdogskills/</link>
-      <pubDate>Sat, 14 Mar 2026 07:21:22 -0600</pubDate>
-      <guid>https://griz.sh/tags/petdogskills/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Tracking</title>
-      <link>https://griz.sh/tags/tracking/</link>
-      <pubDate>Sat, 14 Mar 2026 07:19:22 -0600</pubDate>
-      <guid>https://griz.sh/tags/tracking/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Puppy</title>
-      <link>https://griz.sh/tags/puppy/</link>
-      <pubDate>Fri, 27 Feb 2026 14:45:00 -0700</pubDate>
-      <guid>https://griz.sh/tags/puppy/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Barking</title>
-      <link>https://griz.sh/tags/barking/</link>
-      <pubDate>Sun, 22 Feb 2026 20:15:36 -0700</pubDate>
-      <guid>https://griz.sh/tags/barking/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Shaping</title>
-      <link>https://griz.sh/tags/shaping/</link>
-      <pubDate>Sun, 22 Feb 2026 20:15:36 -0700</pubDate>
-      <guid>https://griz.sh/tags/shaping/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Detection</title>
-      <link>https://griz.sh/tags/detection/</link>
-      <pubDate>Sun, 22 Feb 2026 19:53:14 -0700</pubDate>
-      <guid>https://griz.sh/tags/detection/</guid>
-      <description></description>
-    </item>
-  </channel>
+	<channel>
+		<title>Tags on Canine Communication with Griz</title>
+		<link>https://griz.sh/tags/</link>
+		<description>Recent content in Tags on Canine Communication with Griz</description>
+		<generator>Hugo</generator>
+		<language>en</language>
+		
+		
+		
+		
+			<lastBuildDate>Sun, 28 Jun 2026 00:00:00 +0000</lastBuildDate>
+		
+			<atom:link href="https://griz.sh/tags/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Nosework</title>
+				<link>https://griz.sh/tags/nosework/</link>
+				<pubDate>Sun, 28 Jun 2026 00:00:00 +0000</pubDate>
+				<guid>https://griz.sh/tags/nosework/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Protection</title>
+				<link>https://griz.sh/tags/protection/</link>
+				<pubDate>Sat, 27 Jun 2026 00:00:00 +0000</pubDate>
+				<guid>https://griz.sh/tags/protection/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Obedience</title>
+				<link>https://griz.sh/tags/obedience/</link>
+				<pubDate>Sun, 21 Jun 2026 00:00:00 +0000</pubDate>
+				<guid>https://griz.sh/tags/obedience/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Argos</title>
+				<link>https://griz.sh/tags/argos/</link>
+				<pubDate>Sun, 15 Mar 2026 00:00:00 +0000</pubDate>
+				<guid>https://griz.sh/tags/argos/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Griz</title>
+				<link>https://griz.sh/tags/griz/</link>
+				<pubDate>Sun, 15 Mar 2026 00:00:00 +0000</pubDate>
+				<guid>https://griz.sh/tags/griz/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Karma</title>
+				<link>https://griz.sh/tags/karma/</link>
+				<pubDate>Sun, 15 Mar 2026 00:00:00 +0000</pubDate>
+				<guid>https://griz.sh/tags/karma/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Chill</title>
+				<link>https://griz.sh/tags/chill/</link>
+				<pubDate>Sat, 14 Mar 2026 07:21:22 -0600</pubDate>
+				<guid>https://griz.sh/tags/chill/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Petdogskills</title>
+				<link>https://griz.sh/tags/petdogskills/</link>
+				<pubDate>Sat, 14 Mar 2026 07:21:22 -0600</pubDate>
+				<guid>https://griz.sh/tags/petdogskills/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Tracking</title>
+				<link>https://griz.sh/tags/tracking/</link>
+				<pubDate>Sat, 14 Mar 2026 07:19:22 -0600</pubDate>
+				<guid>https://griz.sh/tags/tracking/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Bh</title>
+				<link>https://griz.sh/tags/bh/</link>
+				<pubDate>Fri, 27 Feb 2026 18:10:53 -0700</pubDate>
+				<guid>https://griz.sh/tags/bh/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Puppy</title>
+				<link>https://griz.sh/tags/puppy/</link>
+				<pubDate>Fri, 27 Feb 2026 14:45:00 -0700</pubDate>
+				<guid>https://griz.sh/tags/puppy/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Igp</title>
+				<link>https://griz.sh/tags/igp/</link>
+				<pubDate>Sun, 22 Feb 2026 21:47:39 -0700</pubDate>
+				<guid>https://griz.sh/tags/igp/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Barking</title>
+				<link>https://griz.sh/tags/barking/</link>
+				<pubDate>Sun, 22 Feb 2026 20:15:36 -0700</pubDate>
+				<guid>https://griz.sh/tags/barking/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Shaping</title>
+				<link>https://griz.sh/tags/shaping/</link>
+				<pubDate>Sun, 22 Feb 2026 20:15:36 -0700</pubDate>
+				<guid>https://griz.sh/tags/shaping/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Detection</title>
+				<link>https://griz.sh/tags/detection/</link>
+				<pubDate>Sun, 22 Feb 2026 19:53:14 -0700</pubDate>
+				<guid>https://griz.sh/tags/detection/</guid>
+				<description></description>
+			</item>
+	</channel>
 </rss>
