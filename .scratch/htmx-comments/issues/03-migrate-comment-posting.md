@@ -1,6 +1,8 @@
-# 03: Migrate comment posting to htmx + Alpine, add post-submit messaging
+# 03: Migrate comment posting to htmx + Alpine
 
-**What to build:** `postComment.html`'s submit flow is rewritten to use htmx and Alpine-driven UI state instead of the current manual `fetch()` + imperative `showError`/`hideError` JS. On a successful submission, two new messages appear: a success confirmation, and a separate note about the comment review schedule/contact - both previously deferred, shipped now since this ticket touches the same code path anyway.
+**What to build:** `postComment.html`'s submit flow is rewritten to use htmx and Alpine-driven UI state instead of the current manual `fetch()` + imperative `showError`/`hideError` JS.
+
+**Scope change from the original spec:** the success/review-schedule messaging originally planned for this ticket is dropped. It was written when comments defaulted to `approved: false` (a real pending-review state); since then the site owner switched to auto-approve (`approved: true` by default, see `.scratch/asides/auto-approve-comments.md`), so "submitted for review" would now be actively misleading - comments go live immediately once captcha passes, there's no queue to describe. The site owner explicitly chose not to add any replacement success message either, for now.
 
 **Blocked by:** 01 (independent of ticket 02 - different file, can run in parallel)
 
@@ -10,8 +12,7 @@
 - [ ] Because AppSync returns HTTP 200 even when a resolver rejects the request, a small `htmx:afterRequest` listener inspects the parsed response body for a top-level `errors` array and drives Alpine state accordingly - htmx's default HTTP-status-based success/failure distinction is not relied on alone
 - [ ] Alpine (`x-data`/`x-show`) drives all message visibility, replacing the Issue 2 `showError`/`hideError` JS functions
 - [ ] Existing captcha error behavior from Issue 2 is preserved: a distinct message when the widget hasn't been solved, a distinct message when the server rejects the token, and the widget resets after either so the visitor can retry
-- [ ] On successful submission, two new messages appear together: a success confirmation ("Comment successfully submitted for review" or similar wording) and a separate note about the review schedule/contact ("I review comments on Fridays, or you can email/text me" or similar wording)
-- [ ] The review-schedule/contact note contains no actual email address or phone number
-- [ ] Verified in a real browser via local `hugo server` against the live backend: submitting a valid comment (solved widget) succeeds, lands `approved: false` (checked via a table read), and shows both new messages; submitting without solving the widget, and a submission that fails server-side verification, both still show their respective distinct error messages with the widget reset for retry
+- [ ] A successful submission still resets the form and the Turnstile widget, and still dispatches `refreshComments` on `document.body` so the comment list (ticket 02) reflects the new comment - matching current (silent) behavior, no new success message
+- [ ] Verified in a real browser against the live backend: submitting a valid comment (solved widget) succeeds and lands `approved: true` (per the auto-approve aside) and shows up after the list refreshes; submitting without solving the widget, and a submission that fails server-side verification, both still show their respective distinct error messages with the widget reset for retry
 - [ ] No AWS/resolver changes - this ticket is client-side only
 - [ ] No changes to `public/` until the final ticket rebuilds it

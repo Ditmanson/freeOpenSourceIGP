@@ -167,9 +167,89 @@
 
 
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-<div class="box">
+<script>
+function turnstileTokenOrNotify() {
+    var token = typeof turnstile !== "undefined" ? turnstile.getResponse() : "";
+    if (!token) {
+        document.body.dispatchEvent(new CustomEvent('comment-captcha-missing'));
+        return false;
+    }
+    return true;
+}
+
+document.addEventListener('alpine:init', function () {
+    Alpine.data('commentForm', function () {
+        return {
+            showError: false,
+            errorMessage: '',
+
+            init: function () {
+                document.body.addEventListener('comment-captcha-missing', function () {
+                    this.errorMessage = "Please complete the captcha before posting.";
+                    this.showError = true;
+                }.bind(this));
+            },
+
+            handleAfterRequest: function (evt) {
+                if (evt.detail.elt.id !== 'commentForm') {
+                    return;
+                }
+
+                var body = null;
+                try {
+                    body = JSON.parse(evt.detail.xhr.responseText);
+                } catch (e) {
+                    
+                }
+
+                if (typeof turnstile !== "undefined") {
+                    turnstile.reset();
+                }
+
+                if (body && body.errors) {
+                    console.error("GraphQL errors:", body.errors);
+                    
+                    
+                    
+                    var isCaptchaError = body.errors.some(function (e) {
+                        return (e.message || "").includes("Turnstile");
+                    });
+                    this.errorMessage = isCaptchaError
+                        ? "Captcha verification failed. Please try again."
+                        : "Something went wrong posting your comment. Please try again.";
+                    this.showError = true;
+                    return;
+                }
+
+                if (!body || !body.data) {
+                    console.error("Unexpected response posting comment:", evt.detail.xhr.responseText);
+                    this.errorMessage = "Something went wrong posting your comment. Please try again.";
+                    this.showError = true;
+                    return;
+                }
+
+                console.log("Posted comment:", body.data);
+                this.showError = false;
+                document.getElementById('commentForm').reset();
+
+                
+                document.body.dispatchEvent(new Event('refreshComments'));
+            }
+        };
+    });
+});
+</script>
+<div class="box" x-data="commentForm" x-on:htmx:after-request.window="handleAfterRequest($event)">
     <h3 class="title is-4">Post a Comment</h3>
-    <form id="commentForm">
+    <form
+        id="commentForm"
+        hx-post="https://z2ujenfjtzhdngdxb7xe5pld3i.appsync-api.us-east-2.amazonaws.com/graphql"
+        hx-ext="json-enc"
+        hx-trigger="submit[turnstileTokenOrNotify()]"
+        hx-swap="none"
+        hx-headers='js:{"x-api-key": "da2-zmx7kmlw7ze4hioupggncn3xtm", "x-turnstile-token": typeof turnstile !== "undefined" ? turnstile.getResponse() : ""}'
+        hx-vals='js:{query: `mutation CreateComment($input: CreateGrizcommentsInput!) { createGrizcomments(input: $input) { id name comment postSlug createdAt approved } }`, variables: {input: {id: crypto.randomUUID(), name: document.getElementById("name").value, comment: document.getElementById("comment").value, url: "https://griz.sh", postSlug: window.location.pathname, approved: true, createdAt: new Date().toISOString()}}}'
+    >
         <div class="field">
             <label class="label">Name</label>
             <div class="control">
@@ -188,7 +268,7 @@
             <div class="cf-turnstile" data-sitekey="0x4AAAAAAEhVn_r1wv8HHNku"></div>
         </div>
 
-        <p id="commentError" class="has-text-danger" style="display:none;"></p>
+        <p x-show="showError" x-text="errorMessage" class="has-text-danger" style="display:none;"></p>
 
         <div class="field">
             <div class="control">
@@ -197,116 +277,6 @@
         </div>
     </form>
 </div>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const commentForm = document.getElementById('commentForm');
-    const commentError = document.getElementById('commentError');
-
-    const GRAPHQL_ENDPOINT = "https://z2ujenfjtzhdngdxb7xe5pld3i.appsync-api.us-east-2.amazonaws.com/graphql";
-    const API_KEY = "da2-zmx7kmlw7ze4hioupggncn3xtm";
-
-    function showError(message) {
-        commentError.textContent = message;
-        commentError.style.display = "block";
-    }
-
-    function hideError() {
-        commentError.style.display = "none";
-    }
-
-    function resetTurnstile() {
-        if (typeof turnstile !== "undefined") {
-            turnstile.reset();
-        }
-    }
-
-    commentForm.addEventListener('submit', async function (event) {
-        event.preventDefault();
-        hideError();
-
-        const turnstileToken = typeof turnstile !== "undefined" ? turnstile.getResponse() : "";
-        if (!turnstileToken) {
-            showError("Please complete the captcha before posting.");
-            return;
-        }
-
-        const name = document.getElementById('name').value;
-        const comment = document.getElementById('comment').value;
-
-        
-        const postSlug = window.location.pathname;
-
-        const mutation = `
-            mutation CreateComment($input: CreateGrizcommentsInput!) {
-                createGrizcomments(input: $input) {
-                    id
-                    name
-                    comment
-                    postSlug
-                    createdAt
-                    approved
-                }
-            }
-        `;
-
-        const variables = {
-            input: {
-                id: crypto.randomUUID(),
-                name: name,
-                comment: comment,
-                url: "https://griz.sh",   
-                postSlug: postSlug,
-                approved: true,
-                createdAt: new Date().toISOString()
-            }
-        };
-
-        try {
-            const response = await fetch(GRAPHQL_ENDPOINT, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "x-api-key": API_KEY,
-                    "x-turnstile-token": turnstileToken
-                },
-                body: JSON.stringify({
-                    query: mutation,
-                    variables: variables
-                })
-            });
-
-            const result = await response.json();
-
-            if (result.errors) {
-                console.error("GraphQL errors:", result.errors);
-                
-                
-                
-                const isCaptchaError = result.errors.some(e => (e.message || "").includes("Turnstile"));
-                showError(isCaptchaError
-                    ? "Captcha verification failed. Please try again."
-                    : "Something went wrong posting your comment. Please try again.");
-                resetTurnstile();
-                return;
-            }
-
-            console.log("Posted comment:", result.data);
-
-            
-            commentForm.reset();
-            resetTurnstile();
-
-            
-            document.body.dispatchEvent(new Event('refreshComments'));
-
-        } catch (error) {
-            console.error("Error posting comment:", error);
-            showError("Something went wrong posting your comment. Please try again.");
-            resetTurnstile();
-        }
-    });
-});
-</script>
 
 
 
