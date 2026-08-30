@@ -1,4 +1,4 @@
-Status: ready-for-agent
+Status: done (completed in commits 5e96672..2f275d2, plus bak-file cleanup and tag v1.3.0. Note: the success/review-schedule messaging in User Stories 3-4-5 was dropped mid-issue when the site owner switched to auto-approve - see .scratch/asides/auto-approve-comments.md and ticket 03's scope-change note)
 
 # Migrate comments to htmx, add post-submit messaging
 
