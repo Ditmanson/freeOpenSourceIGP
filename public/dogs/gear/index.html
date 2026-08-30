@@ -255,13 +255,46 @@
 
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <script>
+function getTurnstileToken() {
+    return typeof turnstile !== "undefined" ? turnstile.getResponse() : "";
+}
+
+function resetTurnstile() {
+    if (typeof turnstile !== "undefined") {
+        turnstile.reset();
+    }
+}
+
 function turnstileTokenOrNotify() {
-    var token = typeof turnstile !== "undefined" ? turnstile.getResponse() : "";
-    if (!token) {
+    if (!getTurnstileToken()) {
         document.body.dispatchEvent(new CustomEvent('comment-captcha-missing'));
         return false;
     }
     return true;
+}
+
+function buildCommentHeaders() {
+    return {
+        "x-api-key": "da2-zmx7kmlw7ze4hioupggncn3xtm",
+        "x-turnstile-token": getTurnstileToken()
+    };
+}
+
+function buildCommentVals() {
+    return {
+        query: "mutation CreateComment($input: CreateGrizcommentsInput!) { createGrizcomments(input: $input) { id name comment postSlug createdAt approved } }",
+        variables: {
+            input: {
+                id: crypto.randomUUID(),
+                name: document.getElementById("name").value,
+                comment: document.getElementById("comment").value,
+                url: "https://griz.sh",
+                postSlug: window.location.pathname,
+                approved: true,
+                createdAt: new Date().toISOString()
+            }
+        }
+    };
 }
 
 document.addEventListener('alpine:init', function () {
@@ -289,9 +322,7 @@ document.addEventListener('alpine:init', function () {
                     
                 }
 
-                if (typeof turnstile !== "undefined") {
-                    turnstile.reset();
-                }
+                resetTurnstile();
 
                 if (body && body.errors) {
                     console.error("GraphQL errors:", body.errors);
@@ -334,8 +365,8 @@ document.addEventListener('alpine:init', function () {
         hx-ext="json-enc"
         hx-trigger="submit[turnstileTokenOrNotify()]"
         hx-swap="none"
-        hx-headers='js:{"x-api-key": "da2-zmx7kmlw7ze4hioupggncn3xtm", "x-turnstile-token": typeof turnstile !== "undefined" ? turnstile.getResponse() : ""}'
-        hx-vals='js:{query: `mutation CreateComment($input: CreateGrizcommentsInput!) { createGrizcomments(input: $input) { id name comment postSlug createdAt approved } }`, variables: {input: {id: crypto.randomUUID(), name: document.getElementById("name").value, comment: document.getElementById("comment").value, url: "https://griz.sh", postSlug: window.location.pathname, approved: true, createdAt: new Date().toISOString()}}}'
+        hx-headers="js:{...buildCommentHeaders()}"
+        hx-vals="js:{...buildCommentVals()}"
     >
         <div class="field">
             <label class="label">Name</label>
