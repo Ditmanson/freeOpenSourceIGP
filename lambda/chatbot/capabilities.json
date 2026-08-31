@@ -1,0 +1,54 @@
+{
+  "tools": [
+    {
+      "name": "search_site_content",
+      "enabled": true,
+      "description": "Search this dog-training blog's published posts by keyword. Returns matching posts with their title, URL, tags, and a short excerpt. Use this whenever the visitor asks about a specific topic, technique, or dog sport discipline.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Keywords to search for in post titles, tags, and content"
+          }
+        },
+        "required": ["query"]
+      }
+    },
+    {
+      "name": "list_videos",
+      "enabled": true,
+      "description": "List posts on this blog that include an embedded training video, optionally filtered by a topic keyword. Use this when the visitor asks for video recommendations or wants to see something in action.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "topic": {
+            "type": "string",
+            "description": "Optional keyword to filter video posts by topic (omit to list all video posts)"
+          }
+        },
+        "required": []
+      }
+    },
+    {
+      "name": "send_email",
+      "enabled": false,
+      "description": "Send an email on the site owner's behalf. Not implemented yet - this entry exists so the capability can be enabled later without restructuring the tool system.",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    },
+    {
+      "name": "check_calendar",
+      "enabled": false,
+      "description": "Check the site owner's calendar for availability. Not implemented yet - this entry exists so the capability can be enabled later without restructuring the tool system.",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    }
+  ]
+}

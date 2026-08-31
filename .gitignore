@@ -1,2 +1,5 @@
 scripts/.venv/
 scripts/pending-comments.yaml
+__pycache__/
+*.pyc
+lambda/**/function.zip
