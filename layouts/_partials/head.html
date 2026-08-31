@@ -7,10 +7,11 @@
   {{ end }}
 </title>
 
-{{ if eq .Kind "page" }}
+{{ if or (eq .Kind "page") (eq .Kind "home") }}
 <!-- htmx + client-side-templates (renders JSON API responses via Mustache) + Alpine (UI state).
-     Only loaded on individual post pages (layouts/page.html), the only template that renders
-     comments.html/postComment.html - section/home/tag pages don't need these. -->
+     Loaded on individual post pages (layouts/page.html, for comments.html/postComment.html)
+     and the homepage (layouts/home.html, for chatWidget.html) - other section/tag pages
+     don't need these. -->
 <!-- htmx 2.x defaults to selfRequestsOnly:true, blocking cross-origin requests (htmx:invalidPath).
      Our GraphQL API lives on a different origin (AppSync) than this site, so this must be
      disabled - htmx reads this meta tag during its own startup, before processing the page. -->

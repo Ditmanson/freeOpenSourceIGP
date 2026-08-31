@@ -1,7 +1,9 @@
 {{ define "main" }}
 <h1 class="title">
-  {{ .Title }} 
+  {{ .Title }}
 </h1>
+
+{{ partial "/chatWidget.html" . }}
 
 <div class="fixed-grid">
   <div class="grid">

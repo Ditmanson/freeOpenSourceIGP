@@ -1,0 +1,104 @@
+<!-- Homepage Chat Widget -->
+<script>
+function buildChatVals() {
+    return {
+        question: document.getElementById("question").value
+    };
+}
+
+document.addEventListener('alpine:init', function () {
+    Alpine.data('chatWidget', function () {
+        return {
+            loading: false,
+            answer: '',
+            errorMessage: '',
+            rateLimited: false,
+            hasAnswered: false,
+
+            handleBeforeRequest: function (evt) {
+                if (evt.detail.elt.id !== 'chatForm') {
+                    return;
+                }
+                this.loading = true;
+                this.errorMessage = '';
+                this.rateLimited = false;
+                this.hasAnswered = false;
+            },
+
+            handleAfterRequest: function (evt) {
+                if (evt.detail.elt.id !== 'chatForm') {
+                    return;
+                }
+                this.loading = false;
+
+                var body = null;
+                try {
+                    body = JSON.parse(evt.detail.xhr.responseText);
+                } catch (e) {
+                    // leave body null - falls through to the generic error branch below
+                }
+
+                if (evt.detail.xhr.status === 429) {
+                    this.rateLimited = true;
+                    this.errorMessage = (body && body.error) ||
+                        "You've hit a usage limit. Please try again later.";
+                    return;
+                }
+
+                if (!body || !body.answer) {
+                    console.error("Unexpected response from chatbot:", evt.detail.xhr.responseText);
+                    this.errorMessage = (body && body.error) ||
+                        "Something went wrong answering your question. Please try again.";
+                    return;
+                }
+
+                this.answer = body.answer;
+                this.hasAnswered = true;
+            },
+
+            handleSendFailure: function (evt) {
+                if (evt.detail.elt.id !== 'chatForm') {
+                    return;
+                }
+                // htmx:sendError/htmx:timeout fire instead of htmx:after-request
+                // when the request never completes at all (network failure,
+                // CORS rejection, timeout) - without this, loading would stay
+                // stuck true forever with no visible error.
+                this.loading = false;
+                this.errorMessage = "Couldn't reach the chatbot. Please check your connection and try again.";
+            }
+        };
+    });
+});
+</script>
+<div class="box" x-data="chatWidget"
+     x-on:htmx:before-request.window="handleBeforeRequest($event)"
+     x-on:htmx:after-request.window="handleAfterRequest($event)"
+     x-on:htmx:send-error.window="handleSendFailure($event)"
+     x-on:htmx:timeout.window="handleSendFailure($event)">
+    <h3 class="title is-4">Ask about the site</h3>
+    <form
+        id="chatForm"
+        hx-post="https://abriemfcf3qc77frkf4hqlz53a0iiymf.lambda-url.us-east-2.on.aws/"
+        hx-ext="json-enc"
+        hx-swap="none"
+        hx-vals="js:{...buildChatVals()}"
+    >
+        <div class="field has-addons">
+            <div class="control is-expanded">
+                <input class="input" type="text" id="question"
+                       placeholder="Ask about training, videos, or posts..." required />
+            </div>
+            <div class="control">
+                <button type="submit" class="button is-link" x-bind:class="loading ? 'is-loading' : ''" x-bind:disabled="loading">Ask</button>
+            </div>
+        </div>
+    </form>
+
+    <p x-show="errorMessage" x-text="errorMessage"
+       x-bind:class="rateLimited ? 'has-text-warning' : 'has-text-danger'" style="display:none;"></p>
+
+    <div x-show="hasAnswered" class="content" style="display:none;">
+        <p x-text="answer" style="white-space: pre-wrap;"></p>
+    </div>
+</div>
