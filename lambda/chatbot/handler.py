@@ -4,6 +4,7 @@ import urllib.request
 from datetime import datetime, timezone, timedelta
 
 import boto3
+from botocore.config import Config
 from botocore.exceptions import ClientError
 
 # --- Model / region -----------------------------------------------------
@@ -89,6 +90,20 @@ SYSTEM_PROMPT_INSTRUCTIONS = (
 
 bedrock = boto3.client("bedrock-runtime", region_name=REGION)
 dynamodb = boto3.client("dynamodb", region_name=REGION)
+# Short, non-retrying timeout - this client is only ever called from the
+# rejection path (see _record_limit_metric), which is supposed to fail
+# fast. A slow or throttled CloudWatch call should never be able to stall
+# a 429 response for botocore's default ~60s.
+cloudwatch = boto3.client(
+    "cloudwatch",
+    region_name=REGION,
+    config=Config(connect_timeout=2, read_timeout=2, retries={"max_attempts": 1}),
+)
+
+# Namespace for the custom metrics this Lambda publishes when it rejects a
+# request - alarmed on via the same SNS topic ("grizsh") already used for
+# the site's AppSync alarms, not a new notification channel.
+METRIC_NAMESPACE = "GrizChatbot"
 
 with open(CAPABILITIES_FILE) as f:
     _CAPABILITIES = json.load(f)["tools"]
@@ -104,6 +119,7 @@ def handler(event, context):
     ip = _get_source_ip(event)
 
     if not _check_and_increment_ip_limit(ip):
+        _record_limit_metric("RateLimitRejection")
         return _response(
             429,
             {
@@ -143,6 +159,7 @@ def handler(event, context):
     # theoretical).
     reserved_microdollars = _reserve_monthly_spend()
     if reserved_microdollars is None:
+        _record_limit_metric("SpendCeilingRejection")
         return _response(
             429,
             {
@@ -329,6 +346,19 @@ def _get_content_index():
 
 
 # --- Rate limiting / spend circuit-breaker --------------------------------
+
+
+def _record_limit_metric(metric_name):
+    """Synchronous, but failures are swallowed - a metric-publishing error
+    should never break or delay-with-a-crash the actual rejection response
+    the visitor gets."""
+    try:
+        cloudwatch.put_metric_data(
+            Namespace=METRIC_NAMESPACE,
+            MetricData=[{"MetricName": metric_name, "Value": 1, "Unit": "Count"}],
+        )
+    except Exception as e:
+        print("Failed to publish limit metric:", str(e))
 
 
 def _get_source_ip(event):
