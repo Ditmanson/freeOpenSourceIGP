@@ -1,10 +1,32 @@
 {{- $pages := slice -}}
 {{- range .Site.RegularPages -}}
+{{- $transcriptText := "" -}}
+{{- range (partial "/videoIds.html" .) -}}
+{{- with index hugo.Data.transcripts . -}}
+{{- $transcriptText = printf "%s %s" $transcriptText .transcript -}}
+{{- end -}}
+{{- end -}}
+{{- /* Truncation length is deliberately unchanged from before transcripts
+existed - the chatbot Lambda's spend-reservation math (ticket 03) is sized
+against this field's current worst-case length, and that math isn't part
+of this ticket's scope. Prose and transcript text share the same 400-char
+budget rather than growing it, trading some transcript coverage on
+long-prose pages for a guarantee that per-request cost doesn't quietly
+increase.
+
+truncate HTML-escapes its output (so ' becomes &#39;, > becomes &gt;,
+etc) - htmlUnescape after truncate undoes that. This was already needed
+before transcripts existed but stayed invisible: Hugo's typography
+renders prose with smart quotes (an entirely different character from
+a literal '), which truncate's escaping doesn't touch. Raw transcript
+text uses plain ASCII apostrophes and literal ">>" speaker markers,
+which do get escaped - without this second htmlUnescape those show up
+as literal "&#39;"/"&gt;&gt;" in the chatbot's search index. */ -}}
 {{- $pages = $pages | append (dict
     "title" .Title
     "url" .Permalink
     "tags" .Params.tags
-    "summary" (.Plain | htmlUnescape | truncate 400)
+    "summary" (printf "%s %s" (.Plain | htmlUnescape) $transcriptText | truncate 400 | htmlUnescape)
     "hasVideo" (.HasShortcode "youtube")
 ) -}}
 {{- end -}}

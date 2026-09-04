@@ -1,0 +1,18 @@
+{{- $ids := partial "/videoIds.html" . -}}
+{{- $transcripts := slice -}}
+{{- range $ids -}}
+{{- with index hugo.Data.transcripts . -}}
+{{- $transcripts = $transcripts | append . -}}
+{{- end -}}
+{{- end -}}
+{{- with $transcripts -}}
+<section class="section">
+  <h2>Youtube Transcripts</h2>
+  {{- range . }}
+  <div class="box">
+    <h3 class="title is-5">{{ .title }}</h3>
+    <p>{{ .transcript }}</p>
+  </div>
+  {{- end }}
+</section>
+{{- end -}}

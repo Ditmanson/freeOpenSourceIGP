@@ -1,0 +1,28 @@
+{{- /* Returns a slice of distinct YouTube video IDs embedded on the given
+page via the youtube shortcode. Hugo doesn't expose shortcode arguments
+directly, so this parses .RawContent the same regex shape as
+scripts/fetch-transcripts.py's SHORTCODE_RE parses content/ source files
+directly - keep these two patterns in sync if either changes, since both
+are answering the same question: "which video IDs does this content use?"
+
+findRE returns each full match, not a capture group, so there's no
+submatch to pull the ID out of directly - substr . -11 takes the last 11
+characters instead, which is safe only because (a) YouTube video IDs are
+always exactly 11 characters and (b) the regex is anchored to end right
+after the ID with no trailing characters in the pattern.
+
+.HasShortcode "youtube" gates the whole thing: Hugo's actual shortcode
+parser is stricter than this regex (e.g. a stray space right after "{{"
+means Hugo doesn't treat it as a real shortcode invocation, and no video
+actually renders for a visitor) - .HasShortcode is Hugo's own ground
+truth for "is a youtube shortcode really here," so a malformed
+near-match in .RawContent that Hugo itself doesn't recognize can't
+produce a false-positive transcript section. */ -}}
+{{- $ids := slice -}}
+{{- if .HasShortcode "youtube" -}}
+{{- $matches := findRE "\\{\\{\\s*<\\s*youtube\\s+[A-Za-z0-9_-]{11}" .RawContent -}}
+{{- range $matches -}}
+{{- $ids = $ids | append (substr . -11) -}}
+{{- end -}}
+{{- end -}}
+{{- return ($ids | uniq) -}}
