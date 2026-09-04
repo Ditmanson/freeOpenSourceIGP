@@ -1,5 +1,7 @@
+import html
 import json
 import os
+import re
 import urllib.request
 from datetime import datetime, timezone, timedelta
 
@@ -177,7 +179,7 @@ def handler(event, context):
         )
         _true_up_monthly_spend(actual_cost_microdollars, reserved_microdollars)
 
-        return _response(200, {"answer": answer})
+        return _response(200, {"answer": _markdown_to_safe_html(answer)})
     except Exception as e:
         print("Bedrock invoke failed:", str(e))
         # The reserved budget was never actually spent - refund it in full.
@@ -186,6 +188,60 @@ def handler(event, context):
 
 
 # --- Question answering / tool use -----------------------------------------
+
+# Claude's answers naturally use Markdown (bold, bullet lists, [text](url)
+# links) - the widget wants real HTML with live links, not literal
+# asterisks/brackets. The answer text is model output shaped by a visitor's
+# own question, so it's never trusted as raw HTML: everything is escaped
+# first, then only this fixed, small set of safe tags is added back by
+# these two patterns. No raw HTML from the model can ever pass through.
+_BOLD_RE = re.compile(r"\*\*(.+?)\*\*")
+# URLs exclude "*" so a bold marker can never match a span that starts
+# inside an href attribute value - keeps the two substitutions from being
+# able to interact across tag boundaries at all, not just harmlessly.
+_LINK_RE = re.compile(r"\[([^\]]+)\]\((https?://[^\s)*]+)\)")
+
+
+def _markdown_to_safe_html(text):
+    rendered = html.escape(text, quote=True)
+    rendered = _LINK_RE.sub(
+        lambda m: '<a href="{}" target="_blank" rel="noopener noreferrer">{}</a>'.format(
+            m.group(2), m.group(1)
+        ),
+        rendered,
+    )
+    rendered = _BOLD_RE.sub(r"<strong>\1</strong>", rendered)
+
+    html_parts = []
+    paragraph_lines = []
+    list_items = []
+
+    def flush_paragraph():
+        if paragraph_lines:
+            html_parts.append("<p>{}</p>".format("<br>".join(paragraph_lines)))
+            paragraph_lines.clear()
+
+    def flush_list():
+        if list_items:
+            html_parts.append(
+                "<ul>{}</ul>".format("".join("<li>{}</li>".format(i) for i in list_items))
+            )
+            list_items.clear()
+
+    for line in (l.strip() for l in rendered.strip().split("\n")):
+        if not line:
+            flush_paragraph()
+            flush_list()
+        elif line.startswith("- "):
+            flush_paragraph()
+            list_items.append(line[2:].strip())
+        else:
+            flush_list()
+            paragraph_lines.append(line)
+
+    flush_paragraph()
+    flush_list()
+    return "".join(html_parts)
 
 
 def _answer_question(question):

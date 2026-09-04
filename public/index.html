@@ -216,9 +216,7 @@ document.addEventListener('alpine:init', function () {
     <p x-show="errorMessage" x-text="errorMessage"
        x-bind:class="rateLimited ? 'has-text-warning' : 'has-text-danger'" style="display:none;"></p>
 
-    <div x-show="hasAnswered" class="content" style="display:none;">
-        <p x-text="answer" style="white-space: pre-wrap;"></p>
-    </div>
+    <div x-show="hasAnswered" x-html="answer" class="content" style="display:none;"></div>
 </div>
 
 
