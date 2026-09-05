@@ -13,9 +13,9 @@ menu:
       url: "/meetups"
       weight: 20
 
-    - identifier: "Tech"
-      name: "Tech"
-      url: "/tech"
+    - identifier: "Dog Psychology"
+      name: "dog psychology"
+      url: "/dog_psychology"
       weight: 30
 
     - identifier: "Misc"
@@ -27,6 +27,11 @@ menu:
       name: "Tags"
       url: "/tags/"
       weight: 50
+
+    - identifier: "Tech"
+      name: "Tech"
+      url: "/tech"
+      weight: 60
 
 taxonomies:
   tag: "tags"
