@@ -1,26 +1,28 @@
-# Issue tracker: Local Markdown
+# Issue tracker: GitHub Issues
 
-Issues and specs for this repo live as markdown files in `.scratch/`.
+Issues and specs for this repo live as GitHub Issues on `Ditmanson/griz`.
 
 ## Conventions
 
-- One feature per directory: `.scratch/<feature-slug>/`
-- The spec is `.scratch/<feature-slug>/spec.md`
-- Implementation issues are one file per ticket at `.scratch/<feature-slug>/issues/<NN>-<slug>.md`, numbered from `01`, never a single combined tickets file
-- Triage state is recorded as a `Status:` line near the top of each issue file (see `triage-labels.md` for the role strings)
-- Comments and conversation history append to the bottom of the file under a `## Comments` heading
+- One feature = one **epic** issue, labeled `epic`. Its body holds the spec (problem statement, solution, implementation/testing decisions, out-of-scope notes).
+- Implementation tickets are separate issues, one per vertical slice, each starting with a `Parent: #<epic-issue-number>` line.
+- A ticket's dependencies are recorded as a `Blocked by: #N, #N` line near the top, or "None (can start immediately)".
+- Acceptance criteria are a GitHub task list (`- [ ]` / `- [x]`) in the ticket body.
+- A ticket that's actionable now gets the `ready-for-agent` label; leave it off tickets still blocked.
+- Closing an issue (state `closed`, reason `completed`) is how "done" is recorded. Conversation/history is regular issue comments, not a body section.
+- The epic issue's body (or a pinned comment) lists its child ticket issues as a task list once they exist, and the epic is closed once every child ticket is closed.
 
 ## When a skill says "publish to the issue tracker"
 
-Create a new file under `.scratch/<feature-slug>/` (creating the directory if needed).
+Create the epic issue first (if the feature doesn't have one yet), then one issue per ticket, in dependency order, via `gh issue create` or `gh api repos/Ditmanson/griz/issues`. Label actionable tickets `ready-for-agent`.
 
 ## When a skill says "fetch the relevant ticket"
 
-Read the file at the referenced path. The user will normally pass the path or the issue number directly.
+`gh issue view <number>` (or the issue URL the user gives you).
 
 ## Wayfinding operations
 
-Used by `/wayfinder`. The **map** is a file with one **child** file per ticket.
+Used by `/wayfinder`. This is a separate mechanism from feature tickets above — it tracks a research/decision effort as local files, not GitHub issues. The **map** is a file with one **child** file per ticket.
 
 - **Map**: `.scratch/<effort>/map.md` (the Notes / Decisions-so-far / Fog body).
 - **Child ticket**: `.scratch/<effort>/issues/NN-<slug>.md`, numbered from `01`, with the question in the body. A `Type:` line records the ticket type (`research`/`prototype`/`grilling`/`task`); a `Status:` line records `claimed`/`resolved`.

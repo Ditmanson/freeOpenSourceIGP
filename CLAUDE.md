@@ -2,7 +2,7 @@
 
 ### Issue tracker
 
-Issues and specs live as local markdown files under `.scratch/`. See `docs/agents/issue-tracker.md`.
+Issues and specs live as GitHub Issues on `Ditmanson/griz`. See `docs/agents/issue-tracker.md`.
 
 ### Domain docs
 
